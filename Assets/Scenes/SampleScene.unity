@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b249cb628a89f9e4fbee553505004ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 4483481243922571363, guid: c6af8cbe79227bc42aea9b2d794eb933, type: 3}
+  circleItemPrefab: {fileID: -2708094798087457934, guid: c6af8cbe79227bc42aea9b2d794eb933, type: 3}
   itemContainer: {fileID: 566119516}
 --- !u!212 &395507412
 SpriteRenderer:

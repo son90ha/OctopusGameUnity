@@ -37,4 +37,19 @@ public class Game : MonoBehaviour
     {
         m_listItem = CONST.ListItemType.GetRange(0, count);
     }
+
+    public Color GetColorByItemType(EItemType itemType)
+    {
+        switch (itemType)
+        {
+            case EItemType.BLACK: { return Color.black; }
+            case EItemType.BLUE: { return Color.blue; }
+            case EItemType.CYAN: { return Color.cyan; }
+            case EItemType.GRAY: { return Color.gray; }
+            case EItemType.GREEN: { return Color.green; }
+            case EItemType.MAGENTA: { return Color.magenta; }
+            case EItemType.ORANGE: { return new Color(255, 165, 0); }
+            default: return Color.white;
+        }
+    }
 }
