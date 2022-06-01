@@ -5,11 +5,14 @@ using System;
 
 public class CircleItemMgr : MonoBehaviour
 {
-    public CircleItem circleItemPrefab;
+    public SpriteRenderer itemPrefab;
 
     public GameObject itemContainer;
 
+    public GameObject blackLinePrefab;
+
     private GameObject[] listItem { get; set;}
+
     private List<CircleItem> listCircleItem = new List<CircleItem>{};
 
     // Start is called before the first frame update
@@ -31,28 +34,20 @@ public class CircleItemMgr : MonoBehaviour
         const int startAngle = 0;
         const int distance = 2;
         Vector3 startVec = Vector3.forward;
-
         for (int i = 0, count = listItemType.Count; i < count; i++) {
-            var newCircleItem = Instantiate(circleItemPrefab);
+            var newItem = Instantiate(itemPrefab);
+            newItem.transform.SetParent(itemContainer.transform);
             var curAngle = startAngle + i * 360 / count;
             var angleAxis = Quaternion.AngleAxis(curAngle, startVec);
             var position = angleAxis * (Vector3.right * distance);
             var angleFrom = Utils.ConvertTo360Degree(curAngle - (360 / count / 2));
             var angleTo = Utils.ConvertTo360Degree(curAngle + (360 / count / 2));
-            newCircleItem.Init(position, angleFrom, angleTo, listItemType[i]);
-            // const circleItem: CircleItem = {
-            //     sprite: newItem.getComponent(cc.Sprite),
-            //     angleFrom: angleFrom,
-            //     angleTo: angleTo,
-            //     itemType: itemType
-            // }
- 
-            // const blackLine = cc.instantiate(INST.AssetsManager.getBlackLinePrefab());
-            // blackLine.setParent(this.blackLineContainer);
-            // blackLine.width = 250;
-            // blackLine.angle = angleFrom;
- 
-            listCircleItem.Add(newCircleItem);
+            var circleItem = new CircleItem(newItem, position, angleFrom, angleTo, listItemType[i]);
+            listCircleItem.Add(circleItem);
+
+            var blackLine = Instantiate(blackLinePrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, angleFrom));
+            blackLine.transform.SetParent(itemContainer.transform);
+            blackLine.transform.localScale = new Vector3(0.5f, 0.01f, 1f);
         }
     }
 

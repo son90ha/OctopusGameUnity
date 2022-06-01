@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
         get { return Game._inst; }
     }
 
+    public CharacterController localCharacter;
     private List<EItemType> m_listItem;
     public List<EItemType> ListItem
     {   
@@ -20,12 +21,13 @@ public class Game : MonoBehaviour
 
     void Awake() {
         Game._inst = this;
-        resetListItem(4);
+        resetListItem(6);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameEvent.CircleRotate_Stop.AddListener(onCircleRotateStop);
     }
 
     // Update is called once per frame
@@ -51,5 +53,9 @@ public class Game : MonoBehaviour
             case EItemType.ORANGE: { return new Color(255, 165, 0); }
             default: return Color.white;
         }
+    }
+
+    void onCircleRotateStop(float angle) {
+        Debug.Log(angle);
     }
 }
