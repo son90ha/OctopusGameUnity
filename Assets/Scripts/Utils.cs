@@ -1,4 +1,4 @@
-public static class Utils
+public class Utils
 {
     public static float ConvertTo360Degree(float angle)
     {

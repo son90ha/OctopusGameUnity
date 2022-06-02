@@ -6,18 +6,23 @@ public class CircleItem
 {
 
     public SpriteRenderer spriteRenderer;
-    private float angleFrom { get; set;}
-    private float angleTo { get; set;}
-    EItemType itemType { get; set;}
+    private float m_angleFrom;
+    public float AngleFrom { get { return m_angleFrom; } }
+    private float m_angleTo;
+    public float AngleTo {get { return m_angleTo; } }
+    EItemType m_itemType;
+    public EItemType ItemType { get { return m_itemType; } }
     
 
     public CircleItem(SpriteRenderer sr, Vector3 position, float from, float to, EItemType type)
     {
-        angleFrom = from;
-        angleTo = to;
-        itemType = type;
+        m_angleFrom = from;
+        m_angleTo = to;
+        m_itemType = type;
         spriteRenderer = sr;
-        spriteRenderer.color = Game.inst.GetColorByItemType(itemType);
+        spriteRenderer.color = Game.inst.GetColorByItemType(m_itemType);
+        Debug.Log(type);
+        Debug.Log(spriteRenderer.color);
         spriteRenderer.transform.position = position;
     }
 }

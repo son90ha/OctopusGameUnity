@@ -5,7 +5,6 @@ using System;
 
 public class CircleItemMgr : MonoBehaviour
 {
-    public SpriteRenderer itemPrefab;
 
     public GameObject itemContainer;
 
@@ -13,7 +12,7 @@ public class CircleItemMgr : MonoBehaviour
 
     private GameObject[] listItem { get; set;}
 
-    private List<CircleItem> listCircleItem = new List<CircleItem>{};
+    private List<CircleItem> m_listCircleItem = new List<CircleItem>{};
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +34,15 @@ public class CircleItemMgr : MonoBehaviour
         const int distance = 2;
         Vector3 startVec = Vector3.forward;
         for (int i = 0, count = listItemType.Count; i < count; i++) {
-            var newItem = Instantiate(itemPrefab);
+            var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab);
             newItem.transform.SetParent(itemContainer.transform);
             var curAngle = startAngle + i * 360 / count;
             var angleAxis = Quaternion.AngleAxis(curAngle, startVec);
             var position = angleAxis * (Vector3.right * distance);
             var angleFrom = Utils.ConvertTo360Degree(curAngle - (360 / count / 2));
             var angleTo = Utils.ConvertTo360Degree(curAngle + (360 / count / 2));
-            var circleItem = new CircleItem(newItem, position, angleFrom, angleTo, listItemType[i]);
-            listCircleItem.Add(circleItem);
+            var circleItem = new CircleItem(newItem.GetComponent<SpriteRenderer>(), position, angleFrom, angleTo, listItemType[i]);
+            m_listCircleItem.Add(circleItem);
 
             var blackLine = Instantiate(blackLinePrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, angleFrom));
             blackLine.transform.SetParent(itemContainer.transform);
@@ -61,5 +60,19 @@ public class CircleItemMgr : MonoBehaviour
             GameObject.Destroy(item);
         }
         Array.Clear(listItem, 0, listItem.Length);
+    }
+
+    public EItemType getItemFromAngle(float angle) {
+        var index = this.m_listCircleItem.FindIndex((item) => 
+        {
+            return item.AngleFrom <= angle && angle <= item.AngleTo ;
+        });
+
+        if (index == -1) {
+            Debug.Log("[CircleItemMgr] getItemFromAngle - CANNOT get item from angle = " + angle);
+            return EItemType.BLACK;
+        }
+        
+        return m_listCircleItem[index].ItemType;
     }
 }

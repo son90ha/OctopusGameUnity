@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b249cb628a89f9e4fbee553505004ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 528589306125575965, guid: c6af8cbe79227bc42aea9b2d794eb933, type: 3}
   itemContainer: {fileID: 566119516}
   blackLinePrefab: {fileID: 7138230158817868304, guid: dcdf99e999e20cb42a3bf720aa49496d, type: 3}
 --- !u!212 &395507412
@@ -599,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c103be5d2c9c3488cd0e8d984c45be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layout: {fileID: 1972997506}
 --- !u!1 &1603980107
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +632,51 @@ Transform:
   - {fileID: 1530936000}
   m_Father: {fileID: 1708510943}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1614370277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614370279}
+  - component: {fileID: 1614370278}
+  m_Layer: 0
+  m_Name: GamePrefabMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1614370278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614370277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff9f96fedc4a2e40827dc74c615b374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 4483481243922571363, guid: c6af8cbe79227bc42aea9b2d794eb933, type: 3}
+--- !u!4 &1614370279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614370277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708510942
 GameObject:
@@ -679,6 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localCharacter: {fileID: 1530936001}
+  circleItemMgr: {fileID: 395507411}
 --- !u!1 &1972997505
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +780,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0.35
+  m_Spacing: 0.03
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

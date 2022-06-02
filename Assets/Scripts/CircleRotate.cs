@@ -42,7 +42,7 @@ public class CircleRotate : MonoBehaviour
     void StopRotate()
     {
         curState = ECircleRotateState.STOP;
-        GameEvent.CircleRotate_Stop.Invoke(transform.localEulerAngles.z);
+        GameEvent.CircleRotate_Stop.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
     }
 
     void OnClick() {

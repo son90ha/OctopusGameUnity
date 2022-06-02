@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     }
 
     public CharacterController localCharacter;
+    public CircleItemMgr circleItemMgr;
     private List<EItemType> m_listItem;
     public List<EItemType> ListItem
     {   
@@ -50,12 +51,14 @@ public class Game : MonoBehaviour
             case EItemType.GRAY: { return Color.gray; }
             case EItemType.GREEN: { return Color.green; }
             case EItemType.MAGENTA: { return Color.magenta; }
-            case EItemType.ORANGE: { return new Color(255, 165, 0); }
+            case EItemType.YELLOW: { return Color.yellow; }
+            case EItemType.ORANGE: { return new Color(1f, 0.65f, 0f); }
             default: return Color.white;
         }
     }
 
     void onCircleRotateStop(float angle) {
-        Debug.Log(angle);
+        var item = circleItemMgr.getItemFromAngle(angle);
+        localCharacter.onGetAnItem(item);
     }
 }
