@@ -23,9 +23,9 @@ public class CircleItemMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
+    
     void createItem()
     {
         refreshContainer();
@@ -48,6 +48,8 @@ public class CircleItemMgr : MonoBehaviour
             blackLine.transform.SetParent(itemContainer.transform);
             blackLine.transform.localScale = new Vector3(0.5f, 0.01f, 1f);
         }
+
+        transform.parent.position = new Vector3(0f, -1.5f, 0f);
     }
 
     void refreshContainer()

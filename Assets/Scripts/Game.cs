@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     {   
         get { return m_listItem; }
     }
+    private List<CustomerController> m_listCustomer = new List<CustomerController>();
 
     void Awake() {
         Game._inst = this;
@@ -60,5 +61,10 @@ public class Game : MonoBehaviour
     void onCircleRotateStop(float angle) {
         var item = circleItemMgr.getItemFromAngle(angle);
         localCharacter.onGetAnItem(item);
+    }
+
+    public void AddNewCustomer(CustomerController customer)
+    {
+        m_listCustomer.Add(customer);
     }
 }

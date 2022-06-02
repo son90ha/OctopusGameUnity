@@ -21,8 +21,6 @@ public class CircleItem
         m_itemType = type;
         spriteRenderer = sr;
         spriteRenderer.color = Game.inst.GetColorByItemType(m_itemType);
-        Debug.Log(type);
-        Debug.Log(spriteRenderer.color);
         spriteRenderer.transform.position = position;
     }
 }
