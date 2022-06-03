@@ -31,7 +31,7 @@ public class CircleItemMgr : MonoBehaviour
         refreshContainer();
         var listItemType = Game.inst.ListItem;
         const int startAngle = 0;
-        const int distance = 2;
+        const float distance = 0.4f;
         Vector3 startVec = Vector3.forward;
         for (int i = 0, count = listItemType.Count; i < count; i++) {
             var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab);
@@ -46,10 +46,9 @@ public class CircleItemMgr : MonoBehaviour
 
             var blackLine = Instantiate(blackLinePrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, angleFrom));
             blackLine.transform.SetParent(itemContainer.transform);
+            blackLine.transform.localPosition = new Vector3(0, 0, 0);
             blackLine.transform.localScale = new Vector3(0.5f, 0.01f, 1f);
         }
-
-        transform.parent.position = new Vector3(0f, -1.5f, 0f);
     }
 
     void refreshContainer()

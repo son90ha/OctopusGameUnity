@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ECustomerStatus
+{
+    FINISH,
+    A_PART,
+    REJECT,
+}
+
 public class CustomerController : MonoBehaviour
 {   
     public Transform orderLayout;
@@ -49,5 +56,34 @@ public class CustomerController : MonoBehaviour
     {
         m_totalTime = m_curTime = timePerOrder;
         CreateOrderItem(orderCount);
+    }
+
+    public ECustomerStatus CheckItem(List<EItemType> listItemGot)
+    {
+        var tempListOrderItem = new List<EItemType>(m_listOrderItem);
+        foreach (var item in listItemGot)
+        {
+            var index = tempListOrderItem.IndexOf(item);
+            if (index < 0)
+            {
+                return ECustomerStatus.REJECT;
+            }
+            else
+            {
+                tempListOrderItem.RemoveAt(index);
+            }
+        }
+
+        if (tempListOrderItem.Count == 0)
+        {
+            return ECustomerStatus.FINISH;
+        }
+
+        return ECustomerStatus.A_PART;
+    }
+
+    public void OnOrderFinish()
+    {
+        GameObject.Destroy(gameObject);
     }
 }

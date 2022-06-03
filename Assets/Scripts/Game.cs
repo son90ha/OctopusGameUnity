@@ -29,7 +29,8 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEvent.CircleRotate_Stop.AddListener(onCircleRotateStop);
+        GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
+        GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
     }
 
     // Update is called once per frame
@@ -58,7 +59,8 @@ public class Game : MonoBehaviour
         }
     }
 
-    void onCircleRotateStop(float angle) {
+    private void OnCircleRotateStop(float angle)
+    {
         var item = circleItemMgr.getItemFromAngle(angle);
         localCharacter.onGetAnItem(item);
     }
@@ -66,5 +68,46 @@ public class Game : MonoBehaviour
     public void AddNewCustomer(CustomerController customer)
     {
         m_listCustomer.Add(customer);
+    }
+
+    private void OnCharacterGetAnItem(List<EItemType> listItem)
+    {
+        List<ECustomerStatus> listStatus = new List<ECustomerStatus>();
+        foreach (var c in m_listCustomer)
+        {
+            var status = c.CheckItem(listItem);
+            listStatus.Add(status);
+            if (status == ECustomerStatus.FINISH)
+            {
+                c.OnOrderFinish();
+                RemoveCustomer(c);
+                GameEvent.Game_OrderFinish.Invoke();
+                return;
+            }
+        }
+        var isReject = listStatus.TrueForAll((s => s == ECustomerStatus.REJECT));
+        listStatus.ForEach(i =>
+        {
+            Debug.Log(i.ToString());
+        });
+        Debug.Log("isReject " + isReject);
+        if (isReject)
+        {
+            GameEvent.Game_OrderWrong.Invoke();
+        }
+    }
+
+    private void RemoveCustomer(CustomerController customer)
+    {
+        var index = m_listCustomer.IndexOf(customer);
+        if (index < 0)
+        {
+            Debug.LogError("[Game] RemoveCustomer - Customer not FOUND");
+        }
+        m_listCustomer.RemoveAt(index);
+        if (m_listCustomer.Count == 0)
+        {
+            // customer clear event here
+        }
     }
 }
