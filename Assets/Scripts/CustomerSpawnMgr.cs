@@ -16,7 +16,7 @@ struct CustomerData
 public class CustomerSpawnMgr : MonoBehaviour
 {
     public Transform customerLayout;
-    private CustomerData m_customerData = new CustomerData(1, 10, 20);
+    private CustomerData m_customerData = new CustomerData(3, 10, 5);
     private float m_spawnTiming = 0;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,6 @@ public class CustomerSpawnMgr : MonoBehaviour
     void Update()
     {
         m_spawnTiming += Time.deltaTime;
-        Debug.Log(m_spawnTiming + "|" + m_customerData.customerSpawnTime);
         if (m_spawnTiming >= m_customerData.customerSpawnTime) {
             CreateCustomer();
             m_spawnTiming = 0;
@@ -37,5 +36,7 @@ public class CustomerSpawnMgr : MonoBehaviour
 
     private void CreateCustomer() {
         var newCustom = Instantiate(GamePrefabMgr.inst.customerPrefab, customerLayout);
+        var customerController = newCustom.GetComponent<CustomerController>();
+        customerController.init(2, 10);
     }
 }

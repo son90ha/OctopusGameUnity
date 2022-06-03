@@ -65,8 +65,11 @@ public class CircleItemMgr : MonoBehaviour
     }
 
     public EItemType getItemFromAngle(float angle) {
-        var index = this.m_listCircleItem.FindIndex((item) => 
-        {
+        var index = m_listCircleItem.FindIndex((item) => 
+        {   
+            if (item.AngleFrom > item.AngleTo) {
+                return item.AngleFrom <= angle || angle <= item.AngleTo;
+            }
             return item.AngleFrom <= angle && angle <= item.AngleTo ;
         });
 
