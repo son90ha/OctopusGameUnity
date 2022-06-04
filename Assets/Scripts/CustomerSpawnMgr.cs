@@ -2,33 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-struct CustomerData
-{
-    public CustomerData(int par1, float par2, float par3) {
-        orderCount = par1;
-        timePerOrder = par2;
-        customerSpawnTime = par3;
-    }
-    public int orderCount;
-    public float timePerOrder;
-    public float customerSpawnTime; 
-}
 public class CustomerSpawnMgr : MonoBehaviour
 {
     public Transform customerLayout;
-    private CustomerData m_customerData = new CustomerData(3, 10, 5);
     private float m_spawnTiming = 0;
+    public OctopusCustomerGenData CurCustomerGenData
+    {
+        get; set;
+    }
+    private float m_spawnInterval;
     // Start is called before the first frame update
     void Start()
     {
-        CreateCustomer();
+        GameEvent.Game_CustomerClear.AddListener(OnCustomerClear);
+        GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
+
+        // Init current data
+        CurCustomerGenData = Game.inst.GetCustomerDataByScore(0);
+        m_spawnInterval = 0;
+    }
+
+    private void OnCharacterScoreChanged(int score)
+    {
+        CurCustomerGenData = Game.inst.GetCustomerDataByScore(score);
     }
 
     // Update is called once per frame
     void Update()
     {
         m_spawnTiming += Time.deltaTime;
-        if (m_spawnTiming >= m_customerData.customerSpawnTime) {
+        if (m_spawnTiming >= m_spawnInterval)
+        {
             CreateCustomer();
             m_spawnTiming = 0;
         }
@@ -37,6 +41,14 @@ public class CustomerSpawnMgr : MonoBehaviour
     private void CreateCustomer() {
         var newCustom = Instantiate(GamePrefabMgr.inst.customerPrefab, customerLayout);
         var customerController = newCustom.GetComponent<CustomerController>();
-        customerController.init(2, 10);
+        int ingradientAmount = Random.Range(CurCustomerGenData.IngredientAmountMin, CurCustomerGenData.IngredientAmountMax + 1);
+        float patienceTime = Random.Range(CurCustomerGenData.PatienceMin, CurCustomerGenData.PatienceMax + 1);
+        customerController.init(ingradientAmount, patienceTime);
+        m_spawnInterval = Random.Range(CurCustomerGenData.SpawnIntervalMin, CurCustomerGenData.SpawnIntervalMax + 1);
+    }
+
+    private void OnCustomerClear()
+    {
+        CreateCustomer();
     }
 }

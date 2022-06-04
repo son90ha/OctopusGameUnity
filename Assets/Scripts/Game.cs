@@ -83,9 +83,10 @@ public class Game : MonoBehaviour
             listStatus.Add(status);
             if (status == ECustomerStatus.FINISH)
             {
+                GameEvent.Game_OrderFinish.Invoke(c);
+
                 c.OnOrderFinish();
                 RemoveCustomer(c);
-                GameEvent.Game_OrderFinish.Invoke();
                 return;
             }
         }
@@ -96,7 +97,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void RemoveCustomer(CustomerController customer)
+    public void RemoveCustomer(CustomerController customer)
     {
         var index = m_listCustomer.IndexOf(customer);
         if (index < 0)
@@ -106,7 +107,7 @@ public class Game : MonoBehaviour
         m_listCustomer.RemoveAt(index);
         if (m_listCustomer.Count == 0)
         {
-            // customer clear event here
+            GameEvent.Game_CustomerClear.Invoke();
         }
     }
 
@@ -193,5 +194,10 @@ public class Game : MonoBehaviour
         {
             return e.PlayerScoreMin <= score && score <= e.PlayerScoreMax;
         });
+    }
+
+    public OctopusCustomerGenData GetCustomerGenDataByCurScore()
+    {
+        return GetCustomerDataByScore(localCharacter.Score);
     }
 }

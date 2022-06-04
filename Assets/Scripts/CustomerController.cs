@@ -17,6 +17,11 @@ public class CustomerController : MonoBehaviour
     private float m_curTime = 1;
     private float m_totalTime = 1;
     private List<EItemType> m_listOrderItem = new List<EItemType>();
+    private float m_patientPercent;
+    public int PatientPercent
+    {
+        get { return Mathf.RoundToInt(m_patientPercent * 100); }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +34,18 @@ public class CustomerController : MonoBehaviour
     {
         if (m_curTime > 0) {
             m_curTime = Mathf.Max(0, m_curTime - Time.deltaTime);
-            progressBar.setProgress(m_curTime / m_totalTime);
+            m_patientPercent = m_curTime / m_totalTime;
+            progressBar.setProgress(m_patientPercent);
             if (m_curTime == 0)
             {
-                OnTimeOut();
+                TimeOut();
             }
         }
     }
 
-    void OnTimeOut() {
+    void TimeOut()
+    {
+        Game.inst.RemoveCustomer(this);
         Destroy(gameObject);
     }
 
@@ -85,5 +93,10 @@ public class CustomerController : MonoBehaviour
     public void OnOrderFinish()
     {
         GameObject.Destroy(gameObject);
+    }
+
+    public int IngredientAmount
+    {
+        get { return m_listOrderItem.Count; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,15 +10,22 @@ enum ECircleRotateState {
 
 public class CircleRotate : MonoBehaviour
 {
-
     public GameObject circleIcon;
 
     private float curSpeed = 150;
     private ECircleRotateState curState = ECircleRotateState.STOP;
+    private const float k_defaultAngle = 90;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
+
+        ResetRotateAngle();
+    }
+
+    private void OnOrderWrong()
+    {
+        ResetRotateAngle();
     }
 
     // Update is called once per frame
@@ -54,5 +62,10 @@ public class CircleRotate : MonoBehaviour
         {
             StopRotate();
         }
+    }
+
+    private void ResetRotateAngle()
+    {
+        transform.localEulerAngles = new Vector3(0, 0, k_defaultAngle);
     }
 }

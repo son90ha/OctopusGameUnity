@@ -70,10 +70,10 @@ public class CharacterController : MonoBehaviour
     {
         ResetItemGot();
     }
-    private void OnOrderFinish()
+    private void OnOrderFinish(CustomerController customer)
     {
         ResetItemGot();
-        Score += 1;
+        Score += (customer.IngredientAmount + customer.PatientPercent);
     }
 
     private void ResetItemGot()

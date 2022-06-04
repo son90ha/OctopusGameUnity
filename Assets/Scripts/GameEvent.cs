@@ -13,8 +13,9 @@ public static class GameEvent
     public static UnityEvent<int> Character_ScoreChanged = new UnityEvent<int>();
 
     // Game Event
-    public static UnityEvent Game_OrderFinish = new UnityEvent();
+    public static UnityEvent<CustomerController> Game_OrderFinish = new UnityEvent<CustomerController>();
     public static UnityEvent Game_OrderWrong = new UnityEvent();
+    public static UnityEvent Game_CustomerClear = new UnityEvent();
 
     // Customer Event
     public static UnityEvent Customer_TimeOut = new UnityEvent();

@@ -10,13 +10,13 @@ public enum EItemType
 	RED,
 	GREEN,
 	BLUE,
-	YELLOW,
-	ORANGE,
-	CYAN,
+    YELLOW,
+    CYAN,
 	MAGENTA,
+    ORANGE,
 }
 
 public static class CONST {
-    public static readonly List<EItemType> ListItemType = new List<EItemType>{EItemType.BLACK, EItemType.GRAY, EItemType.GREEN, EItemType.BLUE, EItemType.YELLOW, EItemType.ORANGE, EItemType.CYAN, EItemType.MAGENTA};
+    public static readonly List<EItemType> ListItemType = new List<EItemType> { EItemType.BLACK, EItemType.GRAY, EItemType.GREEN, EItemType.BLUE, EItemType.YELLOW, EItemType.CYAN, EItemType.MAGENTA, EItemType.ORANGE };
 }
 
