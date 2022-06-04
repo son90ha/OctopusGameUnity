@@ -1,0 +1,7 @@
+,BasicOctoChef,QuickTenty,InterestingOcto,LazyOcto,LuckyOcto,FortunateOcto
+TentacleSpeed,150,200,120,100,160,150
+OctopusLives,3,5,3,3,3,3
+LifeLost%,0,0,0,0,50,50
+EasyOrder%,0,0,0,50,0,50
+OctopusBonusPerCustomer,1,1,1.5,1,1,1
+OctopusPatienceBonus,1,2,1.5,1.5,1,1

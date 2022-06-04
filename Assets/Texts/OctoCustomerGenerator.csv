@@ -1,0 +1,8 @@
+PlayerScoreMin,0,500,1000,2000
+PlayerScoreMax,500,1000,2000,-1
+SpawnIntervalMin,5,6,5,4
+SpawnIntervalMax,10,8,6,6
+IngredientAmountMin,1,1,2,2
+IngredientAmountMax,2,3,3,4
+PatienceMin,8,7,6,6
+PatienceMax,10,9.5,9,8.5

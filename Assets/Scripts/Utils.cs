@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
 
 public class Utils
 {
@@ -20,7 +22,7 @@ public class Utils
         return result;
     }
 
-    private static Random rng = new Random();
+    private static System.Random rng = new System.Random();
     public static List<T> Shuffle<T>(List<T> list)  
     {  
         int n = list.Count;  
@@ -33,5 +35,41 @@ public class Utils
         }  
 
         return list;
+    }
+
+    public static int convertToInt(string str)
+    {
+        int result = 0;
+        if (!Int32.TryParse(str, out result))
+        {
+            Debug.LogError(str + " CANNOT parse to INT");
+        }
+
+        return result;
+    }
+
+    public static float convertToFloat(string str)
+    {
+        float result = 0f;
+        if (!float.TryParse(str, out result))
+        {
+            Debug.LogError(str + " CANNOT parse to INT");
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Loop all property in class and show in debug console
+    /// </summary>
+    public static void CheckAllValueOfClass<T>(T t) where T : class
+    {
+        foreach (var field in typeof(T).GetFields(BindingFlags.Instance |
+                                                 BindingFlags.NonPublic |
+                                                 BindingFlags.Public))
+        {
+            // Console.WriteLine("{0} = {1}", field.Name, field.GetValue(t));
+            Debug.Log($"{field.Name} = {field.GetValue(t)}");
+        }
     }
 }

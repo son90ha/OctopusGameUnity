@@ -1,22 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct OctopusData
+{
+    float tentacleSpeed;
+    uint octopusLives;
+    float lifeLostPercent;
+    float easyOrderPercent;
+    float octopusBonusPerCustomer;
+    float octopusPatienceBonus;
+    EOctopusName octopusName;
+}
+
+public enum EOctopusName
+{
+    BasicOctoChef = 1,
+    QuickTenty,
+    InterestingOcto,
+    LazyOcto,
+    LuckyOcto,
+    FortunateOcto,
+}
+
 public class CharacterController : MonoBehaviour
 {
     public Transform itemGotLayout;
     private List<EItemType> m_curListItemGot = new List<EItemType>();
+
+    private int m_score = 0;
+    public int Score
+    {
+        get { return m_score; }
+        set
+        {
+            m_score = value;
+            GameEvent.Character_ScoreChanged.Invoke(m_score);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-
+        GameEvent.Game_OrderFinish.AddListener(OnOrderFinish);
+        GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
+        GameEvent.Customer_TimeOut.AddListener(OnCustomerTimeOut);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameEvent.Game_OrderFinish.AddListener(OnOrderFinish);
-        GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
-        GameEvent.Customer_TimeOut.AddListener(OnCustomerTimeOut);
     }
 
     public void onGetAnItem(EItemType itemType)
@@ -42,6 +73,7 @@ public class CharacterController : MonoBehaviour
     private void OnOrderFinish()
     {
         ResetItemGot();
+        Score += 1;
     }
 
     private void ResetItemGot()

@@ -14,16 +14,20 @@ public class Game : MonoBehaviour
 
     public CharacterController localCharacter;
     public CircleItemMgr circleItemMgr;
+    public TextAsset octoDataBaseText;
+    public TextAsset octoCustomerGenText;
     private List<EItemType> m_listItem;
     public List<EItemType> ListItem
     {   
         get { return m_listItem; }
     }
     private List<CustomerController> m_listCustomer = new List<CustomerController>();
+    private List<OctopusCustomerGenData> m_octopusCustomerGenData;
 
     void Awake() {
         Game._inst = this;
         resetListItem(6);
+        LoadDataBase();
     }
 
     // Start is called before the first frame update
@@ -86,11 +90,6 @@ public class Game : MonoBehaviour
             }
         }
         var isReject = listStatus.TrueForAll((s => s == ECustomerStatus.REJECT));
-        listStatus.ForEach(i =>
-        {
-            Debug.Log(i.ToString());
-        });
-        Debug.Log("isReject " + isReject);
         if (isReject)
         {
             GameEvent.Game_OrderWrong.Invoke();
@@ -109,5 +108,90 @@ public class Game : MonoBehaviour
         {
             // customer clear event here
         }
+    }
+
+    private void LoadDataBase()
+    {
+        LoadOctopusCustomerGenData();
+    }
+
+    private void LoadOctopusCustomerGenData()
+    {
+        var octCusLines = CSVLoader.ParseArray(octoCustomerGenText.text);
+        int dataCount = octCusLines[0].Length - 1;
+        m_octopusCustomerGenData = new List<OctopusCustomerGenData>(new OctopusCustomerGenData[dataCount]);
+
+        for (int i = 0; i < octCusLines.Length; i++)
+        {
+            var lineData = octCusLines[i];
+            for (int j = 1; j < lineData.Length; j++)
+            {
+                if (m_octopusCustomerGenData[j - 1] == null)
+                {
+                    m_octopusCustomerGenData[j - 1] = new OctopusCustomerGenData();
+                }
+                var data = m_octopusCustomerGenData[j - 1];
+                switch (lineData[0])
+                {
+                    case "PlayerScoreMin":
+                        {
+                            data.PlayerScoreMin = Utils.convertToInt(lineData[j]);
+                            break;
+                        }
+                    case "PlayerScoreMax":
+                        {
+                            data.PlayerScoreMax = Utils.convertToInt(lineData[j]);
+                            if (data.PlayerScoreMax < 0)
+                            {
+                                data.PlayerScoreMax = int.MaxValue;
+                            }
+                            break;
+                        }
+                    case "SpawnIntervalMin":
+                        {
+                            data.SpawnIntervalMin = Utils.convertToFloat(lineData[j]);
+                            break;
+                        }
+                    case "SpawnIntervalMax":
+                        {
+                            data.SpawnIntervalMax = Utils.convertToFloat(lineData[j]);
+                            break;
+                        }
+                    case "IngredientAmountMin":
+                        {
+                            data.IngredientAmountMin = Utils.convertToInt(lineData[j]);
+                            break;
+                        }
+                    case "IngredientAmountMax":
+                        {
+                            data.IngredientAmountMax = Utils.convertToInt(lineData[j]);
+                            break;
+                        }
+                    case "PatienceMin":
+                        {
+                            data.PatienceMin = Utils.convertToFloat(lineData[j]);
+                            break;
+                        }
+                    case "PatienceMax":
+                        {
+                            data.PatienceMax = Utils.convertToFloat(lineData[j]);
+                            break;
+                        }
+                    default: break;
+                }
+            }
+        }
+        // m_octopusCustomerGenData.ForEach((e) =>
+        // {
+        //     Utils.CheckAllValueOfClass(e);
+        // });
+    }
+
+    public OctopusCustomerGenData GetCustomerDataByScore(int score)
+    {
+        return m_octopusCustomerGenData.Find((e) =>
+        {
+            return e.PlayerScoreMin <= score && score <= e.PlayerScoreMax;
+        });
     }
 }

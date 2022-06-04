@@ -10,6 +10,7 @@ public static class GameEvent
 
     // Character Event
     public static UnityEvent<List<EItemType>> Character_GetAnItem = new UnityEvent<List<EItemType>>();
+    public static UnityEvent<int> Character_ScoreChanged = new UnityEvent<int>();
 
     // Game Event
     public static UnityEvent Game_OrderFinish = new UnityEvent();

@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Utils.cs" />
+     <Compile Include="Assets\Scripts\CSVLoader.cs" />
      <Compile Include="Assets\Scripts\GamePrefabMgr.cs" />
      <Compile Include="Assets\Scripts\CharacterController.cs" />
      <Compile Include="Assets\Scripts\CustomerSpawnMgr.cs" />
@@ -47,8 +48,10 @@
      <Compile Include="Assets\Scripts\CustomerProgressBar.cs" />
      <Compile Include="Assets\Scripts\CircleRotate.cs" />
      <Compile Include="Assets\Scripts\CustomerController.cs" />
+     <Compile Include="Assets\Scripts\DataStruct.cs" />
      <Compile Include="Assets\Scripts\CONST.cs" />
      <Compile Include="Assets\Beautiful Progress Bar Free - CYKO\Scripts\SliderScripts.cs" />
+     <Compile Include="Assets\Scripts\GameUI.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
