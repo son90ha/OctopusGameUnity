@@ -19,6 +19,6 @@ public class GameUI : MonoBehaviour
 
     private void _onCharacterScoreChanged(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
 }

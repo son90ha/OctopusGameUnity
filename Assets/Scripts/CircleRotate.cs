@@ -38,7 +38,7 @@ public class CircleRotate : MonoBehaviour
         
         if (curState == ECircleRotateState.ROTATING) {
             float rotateAngle = Time.deltaTime * curSpeed;
-            transform.Rotate(Vector3.forward, rotateAngle);
+            transform.Rotate(Vector3.forward, -rotateAngle);
         }
     }
 
