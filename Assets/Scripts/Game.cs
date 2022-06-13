@@ -200,4 +200,11 @@ public class Game : MonoBehaviour
     {
         return GetCustomerDataByScore(localCharacter.Score);
     }
+
+    public List<EItemType> GetListItemWithoutPowerUp()
+    {
+        var newList = new List<EItemType>(m_listItem);
+        newList.RemoveAt(newList.IndexOf(EItemType.POWER_UP));
+        return newList;
+    }
 }

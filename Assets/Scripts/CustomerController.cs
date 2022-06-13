@@ -51,7 +51,7 @@ public class CustomerController : MonoBehaviour
 
     void CreateOrderItem(int count) 
     {
-        m_listOrderItem =  Utils.Shuffle<EItemType>(new List<EItemType>(Game.inst.ListItem)).GetRange(0, count);
+        m_listOrderItem = Utils.Shuffle<EItemType>(Game.inst.GetListItemWithoutPowerUp()).GetRange(0, count);
         foreach (var item in m_listOrderItem)
         {
             var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab, orderLayout);
