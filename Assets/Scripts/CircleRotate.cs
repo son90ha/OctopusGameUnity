@@ -21,7 +21,7 @@ public class CircleRotate : MonoBehaviour
     {
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
-
+        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
@@ -89,5 +89,10 @@ public class CircleRotate : MonoBehaviour
     private void OnCharacterDataChanged(OctopusData data)
     {
         this.curSpeed = data.tentacleSpeed;
+    }
+
+    private void OnGameOver()
+    {
+        curState = ECircleRotateState.STOP;
     }
 }
