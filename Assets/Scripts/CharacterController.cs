@@ -9,12 +9,12 @@ public struct OctopusData
     public float easyOrderPercent;
     public float octopusBonusPerCustomer;
     public float octopusPatienceBonus;
-    public EOctopusType octopusName;
+    public EOctopusType octopusType;
 }
 
 public enum EOctopusType
 {
-    BasicOctoChef = 1,
+    BasicOctoChef = 0,
     QuickTenty,
     InterestingOcto,
     LazyOcto,
@@ -25,6 +25,7 @@ public enum EOctopusType
 public class CharacterController : MonoBehaviour
 {
     public Transform itemGotLayout;
+    public SpriteRenderer octopusSpriteRender;
     private List<EItemType> m_curListItemGot = new List<EItemType>();
 
     private int m_score = 0;
@@ -38,6 +39,7 @@ public class CharacterController : MonoBehaviour
         set
         {
             m_octopusData = value;
+            SetSkinColor(m_octopusData.octopusType);
             GameEvent.Character_DataChanged.Invoke(m_octopusData);
         }
     }
@@ -59,6 +61,10 @@ public class CharacterController : MonoBehaviour
     {
         get { return m_octopusData.octopusPatienceBonus; }
     }
+    public EOctopusType CurOctopusType
+    {
+        get { return m_octopusData.octopusType; }
+    }
 
     void Awake()
     {
@@ -79,6 +85,12 @@ public class CharacterController : MonoBehaviour
 
     public void onGetAnItem(EItemType itemType)
     {
+        if (itemType == EItemType.POWER_UP)
+        {
+            //Do power up here;
+            Debug.Log("[CharacterController] onGetAnItem - Pick PowerUp");
+            return;
+        }
         var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab, itemGotLayout);
         newItem.AddComponent<UnityEngine.UI.LayoutElement>();
         newItem.transform.localScale = new Vector3(0.3f, 0.3f, 1);
@@ -100,7 +112,7 @@ public class CharacterController : MonoBehaviour
     private void OnOrderFinish(CustomerController customer)
     {
         ResetItemGot();
-        Score += (customer.IngredientAmount + customer.PatientPercent);
+        Score += Mathf.RoundToInt((customer.IngredientAmount + customer.PatientPercent) * m_octopusData.octopusBonusPerCustomer);
     }
 
     private void ResetItemGot()
@@ -123,5 +135,22 @@ public class CharacterController : MonoBehaviour
         {
             Debug.Log("Apply LifeLost ability");
         }
+    }
+
+    private void SetSkinColor(EOctopusType type)
+    {
+        Color color = Color.white;
+        switch (type)
+        {
+            case EOctopusType.BasicOctoChef: { color = Color.magenta; break; }
+            case EOctopusType.QuickTenty: { color = Color.blue; break; }
+            case EOctopusType.InterestingOcto: { color = Color.cyan; break; }
+            case EOctopusType.LazyOcto: { color = Color.yellow; break; }
+            case EOctopusType.LuckyOcto: { color = Color.green; break; }
+            case EOctopusType.FortunateOcto: { color = Color.red; break; }
+            default: break;
+        }
+
+        octopusSpriteRender.color = color;
     }
 }

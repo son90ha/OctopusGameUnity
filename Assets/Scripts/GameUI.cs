@@ -6,12 +6,15 @@ public class GameUI : MonoBehaviour
 {
     public UnityEngine.UI.Text scoreText;
     public UnityEngine.UI.Text liveText;
-
+    public UnityEngine.UI.Text skinBtnText;
+    public GameObject buttonStart;
+    public UnityEngine.UI.Text btnStartText;
     void Awake()
     {
         GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
         GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
+        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
@@ -38,6 +41,7 @@ public class GameUI : MonoBehaviour
     private void OnCharacterDataChanged(OctopusData data)
     {
         setLive(data.octopusLives);
+        skinBtnText.text = data.octopusType.ToString();
     }
 
     private void setScore(int score)
@@ -48,5 +52,22 @@ public class GameUI : MonoBehaviour
     private void setLive(int lives)
     {
         liveText.text = "Live: " + lives.ToString();
+    }
+
+    public void OnChangedSkinClick()
+    {
+        Game.inst.CharacterChangeToNextSkin();
+    }
+
+    public void OnStartClick()
+    {
+        Game.inst.CreateNewGame();
+        buttonStart.SetActive(false);
+    }
+
+    private void OnGameOver()
+    {
+        buttonStart.SetActive(true);
+        btnStartText.text = "Play Again";
     }
 }

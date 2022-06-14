@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 enum ECircleRotateState {
     ROTATING,
@@ -61,6 +62,11 @@ public class CircleRotate : MonoBehaviour
 
     void OnClick()
     {
+        if (EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>() != null)
+        {
+            return;
+        }
+
         if (Game.inst.IsPlaying)
         {
             if (curState == ECircleRotateState.STOP)

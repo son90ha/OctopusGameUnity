@@ -40,7 +40,6 @@ public class Game : MonoBehaviour
     void Awake() {
         m_gameState = EGameState.INITILAIZING;
         Game._inst = this;
-        resetListItem(6);
         LoadDataBase();
 
         GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
@@ -51,9 +50,6 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        circleItemMgr.createItem();
-        CreateCharacterData();
-        m_gameState = EGameState.PLAYING;
     }
 
     // Update is called once per frame
@@ -219,7 +215,7 @@ public class Game : MonoBehaviour
             if (Enum.TryParse<EOctopusType>(octopusName, out octopusNameEnum))
             {
                 var newOctpusData = new OctopusData();
-                newOctpusData.octopusName = octopusNameEnum;
+                newOctpusData.octopusType = octopusNameEnum;
                 for (int j = 1; j < lines.Length; j++)
                 {
                     var lineData = lines[j];
@@ -317,5 +313,25 @@ public class Game : MonoBehaviour
     private void CreateCharacterData()
     {
         localCharacter.octopusData = GetOctopusDataByType(EOctopusType.BasicOctoChef);
+    }
+
+    public void CharacterChangeToNextSkin()
+    {
+        int curSkinValue = (int)localCharacter.CurOctopusType;
+        int nextSkinValue = curSkinValue + 1;
+        if (nextSkinValue > (int)EOctopusType.FortunateOcto)
+        {
+            nextSkinValue = 0;
+        }
+
+        localCharacter.octopusData = GetOctopusDataByType((EOctopusType)nextSkinValue);
+    }
+
+    public void CreateNewGame()
+    {
+        resetListItem(6);
+        circleItemMgr.createItem();
+        CreateCharacterData();
+        m_gameState = EGameState.PLAYING;
     }
 }
