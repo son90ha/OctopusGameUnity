@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum EGameState
+{
+    INITILAIZING,
+    PLAYING,
+    GAMEOVER,
+}
+
 public class Game : MonoBehaviour
 {   
 
@@ -23,18 +30,30 @@ public class Game : MonoBehaviour
     }
     private List<CustomerController> m_listCustomer = new List<CustomerController>();
     private List<OctopusCustomerGenData> m_octopusCustomerGenData;
-
+    private Dictionary<EOctopusType, OctopusData> m_octopusDataDic = new Dictionary<EOctopusType, OctopusData>();
+    private EGameState m_gameState;
+    public EGameState gameState
+    {
+        get { return m_gameState; }
+    }
+    public bool IsPlaying { get { return m_gameState == EGameState.PLAYING; } }
     void Awake() {
+        m_gameState = EGameState.INITILAIZING;
         Game._inst = this;
         resetListItem(6);
         LoadDataBase();
+
+        GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
+        GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
+        GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
-        GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
+        circleItemMgr.createItem();
+        CreateCharacterData();
+        m_gameState = EGameState.PLAYING;
     }
 
     // Update is called once per frame
@@ -114,6 +133,7 @@ public class Game : MonoBehaviour
     private void LoadDataBase()
     {
         LoadOctopusCustomerGenData();
+        LoadOctopusDataBase();
     }
 
     private void LoadOctopusCustomerGenData()
@@ -188,6 +208,61 @@ public class Game : MonoBehaviour
         // });
     }
 
+    private void LoadOctopusDataBase()
+    {
+        var lines = CSVLoader.ParseArray(octoDataBaseText.text);
+        var firstRow = lines[0];
+        for (int i = 1; i < firstRow.Length; i++)
+        {
+            var octopusName = firstRow[i];
+            EOctopusType octopusNameEnum;
+            if (Enum.TryParse<EOctopusType>(octopusName, out octopusNameEnum))
+            {
+                var newOctpusData = new OctopusData();
+                newOctpusData.octopusName = octopusNameEnum;
+                for (int j = 1; j < lines.Length; j++)
+                {
+                    var lineData = lines[j];
+                    switch (lineData[0])
+                    {
+                        case "TentacleSpeed":
+                            {
+                                newOctpusData.tentacleSpeed = Utils.convertToFloat(lineData[i]);
+                                break;
+                            }
+                        case "OctopusLives":
+                            {
+                                newOctpusData.octopusLives = Utils.convertToInt(lineData[i]);
+                                break;
+                            }
+                        case "LifeLost%":
+                            {
+                                newOctpusData.lifeLostPercent = Utils.convertToFloat(lineData[i]);
+                                break;
+                            }
+                        case "EasyOrder%":
+                            {
+                                newOctpusData.easyOrderPercent = Utils.convertToFloat(lineData[i]);
+                                break;
+                            }
+                        case "OctopusBonusPerCustomer":
+                            {
+                                newOctpusData.octopusBonusPerCustomer = Utils.convertToFloat(lineData[i]);
+                                break;
+                            }
+                        case "OctopusPatienceBonus":
+                            {
+                                newOctpusData.octopusPatienceBonus = Utils.convertToFloat(lineData[i]);
+                                break;
+                            }
+                        default: break;
+                    }
+                }
+                m_octopusDataDic.Add(octopusNameEnum, newOctpusData);
+            }
+        }
+    }
+
     public OctopusCustomerGenData GetCustomerDataByScore(int score)
     {
         return m_octopusCustomerGenData.Find((e) =>
@@ -206,5 +281,41 @@ public class Game : MonoBehaviour
         var newList = new List<EItemType>(m_listItem);
         newList.RemoveAt(newList.IndexOf(EItemType.POWER_UP));
         return newList;
+    }
+
+    public OctopusData GetOctopusDataByType(EOctopusType type)
+    {
+        OctopusData result;
+        if (m_octopusDataDic.TryGetValue(type, out result))
+        {
+            return result;
+        }
+
+        Debug.LogError($"[Game] GetOctopusDataByType - NOT FOUND. type = {type}");
+        return new OctopusData();
+    }
+
+    private void OnCharacterLivesLost(int lives)
+    {
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        m_gameState = EGameState.GAMEOVER;
+        m_listCustomer.ForEach((c) =>
+        {
+            GameObject.Destroy(c.gameObject);
+        });
+        m_listCustomer.Clear();
+        GameEvent.Game_GameOver.Invoke();
+    }
+
+    private void CreateCharacterData()
+    {
+        localCharacter.octopusData = GetOctopusDataByType(EOctopusType.BasicOctoChef);
     }
 }

@@ -17,7 +17,6 @@ public class CircleItemMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        createItem();
     }
 
     // Update is called once per frame
@@ -25,8 +24,8 @@ public class CircleItemMgr : MonoBehaviour
     {
 
     }
-    
-    void createItem()
+
+    public void createItem()
     {
         refreshContainer();
         var listItemType = Game.inst.ListItem;

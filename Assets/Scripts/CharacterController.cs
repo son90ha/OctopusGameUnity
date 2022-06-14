@@ -3,16 +3,16 @@ using UnityEngine;
 
 public struct OctopusData
 {
-    float tentacleSpeed;
-    uint octopusLives;
-    float lifeLostPercent;
-    float easyOrderPercent;
-    float octopusBonusPerCustomer;
-    float octopusPatienceBonus;
-    EOctopusName octopusName;
+    public float tentacleSpeed;
+    public int octopusLives;
+    public float lifeLostPercent;
+    public float easyOrderPercent;
+    public float octopusBonusPerCustomer;
+    public float octopusPatienceBonus;
+    public EOctopusType octopusName;
 }
 
-public enum EOctopusName
+public enum EOctopusType
 {
     BasicOctoChef = 1,
     QuickTenty,
@@ -28,6 +28,19 @@ public class CharacterController : MonoBehaviour
     private List<EItemType> m_curListItemGot = new List<EItemType>();
 
     private int m_score = 0;
+    private OctopusData m_octopusData;
+    public OctopusData octopusData
+    {
+        get
+        {
+            return m_octopusData;
+        }
+        set
+        {
+            m_octopusData = value;
+            GameEvent.Character_DataChanged.Invoke(m_octopusData);
+        }
+    }
     public int Score
     {
         get { return m_score; }
@@ -37,12 +50,26 @@ public class CharacterController : MonoBehaviour
             GameEvent.Character_ScoreChanged.Invoke(m_score);
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public float EasyOrderPercent
+    {
+        get { return m_octopusData.easyOrderPercent; }
+    }
+    public float PatienceBonus
+    {
+        get { return m_octopusData.octopusPatienceBonus; }
+    }
+
+    void Awake()
     {
         GameEvent.Game_OrderFinish.AddListener(OnOrderFinish);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
         GameEvent.Customer_TimeOut.AddListener(OnCustomerTimeOut);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -64,7 +91,7 @@ public class CharacterController : MonoBehaviour
 
     private void OnCustomerTimeOut()
     {
-
+        LivesLost();
     }
     private void OnOrderWrong()
     {
@@ -83,5 +110,18 @@ public class CharacterController : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         m_curListItemGot.Clear();
+    }
+
+    private void LivesLost()
+    {
+        if (Random.Range(0, 100) > m_octopusData.lifeLostPercent)
+        {
+            m_octopusData.octopusLives -= 1;
+            GameEvent.Character_LivesLost.Invoke(m_octopusData.octopusLives);
+        }
+        else
+        {
+            Debug.Log("Apply LifeLost ability");
+        }
     }
 }

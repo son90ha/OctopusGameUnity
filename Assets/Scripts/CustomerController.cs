@@ -47,6 +47,8 @@ public class CustomerController : MonoBehaviour
     {
         Game.inst.RemoveCustomer(this);
         Destroy(gameObject);
+
+        GameEvent.Customer_TimeOut.Invoke();
     }
 
     void CreateOrderItem(int count) 

@@ -11,11 +11,16 @@ public class CustomerSpawnMgr : MonoBehaviour
         get; set;
     }
     private float m_spawnInterval;
+
+    void Awake()
+    {
+        GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
+        GameEvent.Game_CustomerClear.AddListener(OnCustomerClear);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameEvent.Game_CustomerClear.AddListener(OnCustomerClear);
-        GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
 
         // Init current data
         CurCustomerGenData = Game.inst.GetCustomerDataByScore(0);
@@ -30,20 +35,33 @@ public class CustomerSpawnMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_spawnTiming += Time.deltaTime;
-        if (m_spawnTiming >= m_spawnInterval)
+        if (Game.inst.IsPlaying)
         {
-            CreateCustomer();
-            m_spawnTiming = 0;
+            m_spawnTiming += Time.deltaTime;
+            if (m_spawnTiming >= m_spawnInterval)
+            {
+                CreateCustomer();
+                m_spawnTiming = 0;
+            }
         }
     }
 
     private void CreateCustomer() {
         var newCustom = Instantiate(GamePrefabMgr.inst.customerPrefab, customerLayout);
         var customerController = newCustom.GetComponent<CustomerController>();
-        int ingradientAmount = Random.Range(CurCustomerGenData.IngredientAmountMin, CurCustomerGenData.IngredientAmountMax + 1);
+        int easyOrderDecrease = (Random.Range(0, 100) > Game.inst.localCharacter.EasyOrderPercent) ? 0 : 1;
+        int ingredientAmountMax = Mathf.Min(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease);
+
+        //  Apply easy order ability
+        if (easyOrderDecrease > 0)
+        {
+            Debug.Log("Apply easy order ability");
+        }
+        //
+
+        int ingradientAmount = Random.Range(CurCustomerGenData.IngredientAmountMin, ingredientAmountMax);
         float patienceTime = Random.Range(CurCustomerGenData.PatienceMin, CurCustomerGenData.PatienceMax + 1);
-        customerController.init(ingradientAmount, patienceTime);
+        customerController.init(ingradientAmount, patienceTime + Game.inst.localCharacter.PatienceBonus);
         m_spawnInterval = Random.Range(CurCustomerGenData.SpawnIntervalMin, CurCustomerGenData.SpawnIntervalMax + 1);
     }
 

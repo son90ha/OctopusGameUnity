@@ -15,11 +15,17 @@ public class CircleRotate : MonoBehaviour
     private float curSpeed = 150;
     private ECircleRotateState curState = ECircleRotateState.STOP;
     private const float k_defaultAngle = 90;
+
+    void Awake()
+    {
+        GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
+        GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
-
         ResetRotateAngle();
     }
 
@@ -53,19 +59,29 @@ public class CircleRotate : MonoBehaviour
         GameEvent.CircleRotate_Stop.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
     }
 
-    void OnClick() {
-        if (curState == ECircleRotateState.STOP) 
+    void OnClick()
+    {
+        if (Game.inst.IsPlaying)
         {
-            StartRotate();
-        }
-        else
-        {
-            StopRotate();
+            if (curState == ECircleRotateState.STOP)
+            {
+                StartRotate();
+            }
+            else
+            {
+                StopRotate();
+            }
+
         }
     }
 
     private void ResetRotateAngle()
     {
         transform.localEulerAngles = new Vector3(0, 0, k_defaultAngle);
+    }
+
+    private void OnCharacterDataChanged(OctopusData data)
+    {
+        this.curSpeed = data.tentacleSpeed;
     }
 }
