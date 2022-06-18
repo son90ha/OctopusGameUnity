@@ -32,4 +32,9 @@ public class CircleItem
         }
 
     }
+
+    public void Destroy()
+    {
+        GameObject.Destroy(spriteRenderer.gameObject);
+    }
 }

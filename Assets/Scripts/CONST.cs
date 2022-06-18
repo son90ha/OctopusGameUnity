@@ -18,6 +18,6 @@ public enum EItemType
 }
 
 public static class CONST {
-    public static readonly List<EItemType> ListItemType = new List<EItemType> { EItemType.POWER_UP, EItemType.BLACK, EItemType.GRAY, EItemType.GREEN, EItemType.BLUE, EItemType.YELLOW, EItemType.CYAN, EItemType.MAGENTA, EItemType.ORANGE };
+    public static readonly List<EItemType> ListItemType = new List<EItemType>((EItemType[])Enum.GetValues(typeof(EItemType)));
 }
 

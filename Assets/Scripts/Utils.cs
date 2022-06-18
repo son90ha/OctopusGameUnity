@@ -62,7 +62,7 @@ public class Utils
     /// <summary>
     /// Loop all property in class and show in debug console
     /// </summary>
-    public static void CheckAllValueOfClass<T>(T t) where T : class
+    public static void CheckAllValueOfClass<T>(T t)
     {
         foreach (var field in typeof(T).GetFields(BindingFlags.Instance |
                                                  BindingFlags.NonPublic |

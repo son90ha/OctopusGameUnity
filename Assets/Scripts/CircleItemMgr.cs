@@ -10,8 +10,6 @@ public class CircleItemMgr : MonoBehaviour
 
     public GameObject blackLinePrefab;
 
-    private GameObject[] listItem { get; set;}
-
     private List<CircleItem> m_listCircleItem = new List<CircleItem>{};
 
     // Start is called before the first frame update
@@ -52,14 +50,11 @@ public class CircleItemMgr : MonoBehaviour
 
     void refreshContainer()
     {
-        if (listItem == null) {
-            return;
-        }
-        foreach (var item in listItem)
+        for (int i = 0, count = itemContainer.transform.childCount; i < count; i++)
         {
-            GameObject.Destroy(item);
+            GameObject.Destroy(itemContainer.transform.GetChild(i).gameObject);
         }
-        Array.Clear(listItem, 0, listItem.Length);
+        m_listCircleItem.Clear();
     }
 
     public EItemType getItemFromAngle(float angle) {

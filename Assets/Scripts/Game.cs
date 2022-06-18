@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     public CircleItemMgr circleItemMgr;
     public TextAsset octoDataBaseText;
     public TextAsset octoCustomerGenText;
+    public TextAsset ingredientDataText;
     private List<EItemType> m_listItem;
     public List<EItemType> ListItem
     {   
@@ -37,6 +38,8 @@ public class Game : MonoBehaviour
         get { return m_gameState; }
     }
     public bool IsPlaying { get { return m_gameState == EGameState.PLAYING; } }
+    private List<IngredientData> m_ingredientDataList = new List<IngredientData>();
+    private int m_curIngredientAmout = 3;
     void Awake() {
         m_gameState = EGameState.INITILAIZING;
         Game._inst = this;
@@ -45,6 +48,7 @@ public class Game : MonoBehaviour
         GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
         GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
         GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
+        GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
     }
 
     // Start is called before the first frame update
@@ -59,7 +63,7 @@ public class Game : MonoBehaviour
 
     void resetListItem(int count) 
     {
-        m_listItem = CONST.ListItemType.GetRange(0, count);
+        m_listItem = CONST.ListItemType.GetRange(0, count + 1); // +1 for POWER_UP 
     }
 
     public Color GetColorByItemType(EItemType itemType)
@@ -74,6 +78,7 @@ public class Game : MonoBehaviour
             case EItemType.MAGENTA: { return Color.magenta; }
             case EItemType.YELLOW: { return Color.yellow; }
             case EItemType.ORANGE: { return new Color(1f, 0.65f, 0f); }
+            case EItemType.RED: { return Color.red; }
             default: return Color.white;
         }
     }
@@ -130,6 +135,7 @@ public class Game : MonoBehaviour
     {
         LoadOctopusCustomerGenData();
         LoadOctopusDataBase();
+        LoadIngredientAmountData();
     }
 
     private void LoadOctopusCustomerGenData()
@@ -329,9 +335,58 @@ public class Game : MonoBehaviour
 
     public void CreateNewGame()
     {
-        resetListItem(6);
+        resetListItem(this.m_curIngredientAmout);
         circleItemMgr.createItem();
         CreateCharacterData();
         m_gameState = EGameState.PLAYING;
+    }
+
+    private void LoadIngredientAmountData()
+    {
+        var data = CSVLoader.ParseArray(ingredientDataText.text);
+        var scoreMinLine = data[0];
+        var scoreMaxLine = data[1];
+        var amountLine = data[2];
+
+        for (int i = 1; i < scoreMaxLine.Length; i++)
+        {
+            IngredientData newData = new IngredientData();
+            newData.PlayerScoreMin = Utils.convertToInt(scoreMinLine[i]);
+            newData.PlayerScoreMax = Utils.convertToInt(scoreMaxLine[i]);
+            if (newData.PlayerScoreMax < 0) newData.PlayerScoreMax = int.MaxValue;
+            newData.IngredientAmount = Utils.convertToInt(amountLine[i]);
+            m_ingredientDataList.Add(newData);
+
+        }
+    }
+
+    public int getIngredientAmountByScore(int score)
+    {
+        int result = 3;
+        int i = m_ingredientDataList.FindIndex((item) =>
+        {
+            return item.PlayerScoreMin <= score && score <= item.PlayerScoreMax;
+        });
+        if (i >= 0)
+        {
+            result = m_ingredientDataList[i].IngredientAmount;
+        }
+        else
+        {
+            Debug.LogError("[Game] getIngredientAmountByScore - Cannot get amout with Score: " + score);
+        }
+
+        return result;
+    }
+
+    private void OnCharacterScoreChanged(int score)
+    {
+        int newIngredientAmout = getIngredientAmountByScore(score);
+        if (newIngredientAmout != m_curIngredientAmout)
+        {
+            m_curIngredientAmout = newIngredientAmout;
+            resetListItem(m_curIngredientAmout);
+            circleItemMgr.createItem();
+        }
     }
 }

@@ -9,3 +9,10 @@ public class OctopusCustomerGenData
     public float PatienceMin;
     public float PatienceMax;
 }
+
+public struct IngredientData
+{
+    public int PlayerScoreMax;
+    public int PlayerScoreMin;
+    public int IngredientAmount;
+}
