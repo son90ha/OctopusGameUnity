@@ -4,33 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-enum ECircleRotateState {
-    ROTATING,
-    STOP,
-}
-
 public class CircleRotate : MonoBehaviour
 {
     public GameObject circleIcon;
 
     private float curSpeed = 150;
-    private ECircleRotateState curState = ECircleRotateState.STOP;
     private const float k_defaultAngle = 90;
 
     void Awake()
     {
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
-        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
     void Start()
-    {
-        ResetRotateAngle();
-    }
-
-    private void OnOrderWrong()
     {
         ResetRotateAngle();
     }
@@ -42,22 +30,12 @@ public class CircleRotate : MonoBehaviour
         {
             OnClick();
         }
-        
-        if (curState == ECircleRotateState.ROTATING) {
+
+        if (Game.inst.IsPlaying)
+        {
             float rotateAngle = Time.deltaTime * curSpeed;
             transform.Rotate(Vector3.forward, -rotateAngle);
         }
-    }
-
-    void StartRotate()
-    {
-        curState = ECircleRotateState.ROTATING;
-    }
-
-    void StopRotate()
-    {
-        curState = ECircleRotateState.STOP;
-        GameEvent.CircleRotate_Stop.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
     }
 
     void OnClick()
@@ -69,15 +47,7 @@ public class CircleRotate : MonoBehaviour
 
         if (Game.inst.IsPlaying)
         {
-            if (curState == ECircleRotateState.STOP)
-            {
-                StartRotate();
-            }
-            else
-            {
-                StopRotate();
-            }
-
+            GameEvent.CircleRotate_Pick.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
         }
     }
 
@@ -91,8 +61,8 @@ public class CircleRotate : MonoBehaviour
         this.curSpeed = data.tentacleSpeed;
     }
 
-    private void OnGameOver()
+    private void OnOrderWrong()
     {
-        curState = ECircleRotateState.STOP;
+        ResetRotateAngle();
     }
 }

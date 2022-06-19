@@ -10,7 +10,7 @@ public class CircleItemMgr : MonoBehaviour
 
     public GameObject blackLinePrefab;
 
-    private List<CircleItem> m_listCircleItem = new List<CircleItem>{};
+    private List<CircleItemBase> m_listCircleItem = new List<CircleItemBase> { };
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +30,14 @@ public class CircleItemMgr : MonoBehaviour
         const int startAngle = 0;
         const float distance = 0.4f;
         Vector3 startVec = Vector3.forward;
-        for (int i = 0, count = listItemType.Count; i < count; i++) {
-            var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab);
-            newItem.transform.SetParent(itemContainer.transform);
+        for (int i = 0, count = listItemType.Count; i < count; i++)
+        {
             var curAngle = startAngle + i * 360 / count;
             var angleAxis = Quaternion.AngleAxis(curAngle, startVec);
             var position = angleAxis * (Vector3.right * distance);
             var angleFrom = Utils.ConvertTo360Degree(curAngle - (360 / count / 2));
             var angleTo = Utils.ConvertTo360Degree(curAngle + (360 / count / 2));
-            var circleItem = new CircleItem(newItem.GetComponent<SpriteRenderer>(), position, angleFrom, angleTo, listItemType[i]);
+            var circleItem = CircleItemBase.CreateCircleItem(itemContainer.transform, position, angleFrom, angleTo, listItemType[i]);
             m_listCircleItem.Add(circleItem);
 
             var blackLine = Instantiate(blackLinePrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, angleFrom));

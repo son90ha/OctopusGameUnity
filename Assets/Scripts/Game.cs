@@ -45,7 +45,7 @@ public class Game : MonoBehaviour
         Game._inst = this;
         LoadDataBase();
 
-        GameEvent.CircleRotate_Stop.AddListener(OnCircleRotateStop);
+        GameEvent.CircleRotate_Pick.AddListener(OnCircleRotatePick);
         GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
         GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
         GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
@@ -83,7 +83,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void OnCircleRotateStop(float angle)
+    private void OnCircleRotatePick(float angle)
     {
         var item = circleItemMgr.getItemFromAngle(angle);
         localCharacter.onGetAnItem(item);
