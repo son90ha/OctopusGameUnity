@@ -30,4 +30,10 @@ public abstract class CircleItemBase
         newItem.transform.SetParent(parent);
         m_spriteRenderer = newItem.GetComponent<SpriteRenderer>();
     }
+
+    virtual public EPowerupType GetPowerupInfo()
+    {
+        Debug.LogError("[CircleItemBase] GetPowerupInfo - Method not implement for itemType: " + m_itemType.ToString());
+        return EPowerupType.NONE;
+    }
 }

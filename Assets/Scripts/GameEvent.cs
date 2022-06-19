@@ -7,6 +7,7 @@ public static class GameEvent
 {
     // CircleRotate Event
     public static UnityEvent<float> CircleRotate_Pick = new UnityEvent<float>();
+    public static UnityEvent CircleRotate_ThroughPowerup = new UnityEvent();
 
     // Character Event
     public static UnityEvent<List<EItemType>> Character_GetAnItem = new UnityEvent<List<EItemType>>();

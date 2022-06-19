@@ -10,7 +10,7 @@ public class CircleRotate : MonoBehaviour
 
     private float curSpeed = 150;
     private const float k_defaultAngle = 90;
-
+    private bool m_inPowerupArea = false;
     void Awake()
     {
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
@@ -35,6 +35,7 @@ public class CircleRotate : MonoBehaviour
         {
             float rotateAngle = Time.deltaTime * curSpeed;
             transform.Rotate(Vector3.forward, -rotateAngle);
+            CheckInPowerupArea(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
         }
     }
 
@@ -64,5 +65,28 @@ public class CircleRotate : MonoBehaviour
     private void OnOrderWrong()
     {
         ResetRotateAngle();
+    }
+
+    private void CheckInPowerupArea(float angle)
+    {
+        CircleItemBase powerupItem = Game.inst.circleItemMgr.PowerupItem;
+        bool isInPowerupArea = false;
+        if (powerupItem.AngleFrom > powerupItem.AngleTo)
+        {
+            isInPowerupArea = powerupItem.AngleFrom <= angle || angle <= powerupItem.AngleTo;
+        }
+        else
+        {
+            isInPowerupArea = powerupItem.AngleFrom <= angle && angle <= powerupItem.AngleTo;
+        }
+
+        if (m_inPowerupArea != isInPowerupArea)
+        {
+            m_inPowerupArea = isInPowerupArea;
+            if (m_inPowerupArea == false)
+            {
+                GameEvent.CircleRotate_ThroughPowerup.Invoke();
+            }
+        }
     }
 }

@@ -11,6 +11,16 @@ public class CircleItemMgr : MonoBehaviour
     public GameObject blackLinePrefab;
 
     private List<CircleItemBase> m_listCircleItem = new List<CircleItemBase> { };
+    private CircleItemBase m_powerupItem = null;
+    public CircleItemBase PowerupItem
+    {
+        get { return m_powerupItem; }
+    }
+
+    void Awake()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +48,10 @@ public class CircleItemMgr : MonoBehaviour
             var angleFrom = Utils.ConvertTo360Degree(curAngle - (360 / count / 2));
             var angleTo = Utils.ConvertTo360Degree(curAngle + (360 / count / 2));
             var circleItem = CircleItemBase.CreateCircleItem(itemContainer.transform, position, angleFrom, angleTo, listItemType[i]);
+            if (listItemType[i] == EItemType.POWER_UP)
+            {
+                m_powerupItem = circleItem;
+            }
             m_listCircleItem.Add(circleItem);
 
             var blackLine = Instantiate(blackLinePrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, angleFrom));
@@ -54,6 +68,7 @@ public class CircleItemMgr : MonoBehaviour
             GameObject.Destroy(itemContainer.transform.GetChild(i).gameObject);
         }
         m_listCircleItem.Clear();
+        m_powerupItem = null;
     }
 
     public EItemType getItemFromAngle(float angle) {

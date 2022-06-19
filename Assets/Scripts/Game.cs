@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum EGameState
-{
-    INITILAIZING,
-    PLAYING,
-    GAMEOVER,
-}
-
 public class Game : MonoBehaviour
 {   
 

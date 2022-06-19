@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class Utils
+public static class Utils
 {
     public static float ConvertTo360Degree(float angle)
     {
@@ -37,6 +37,12 @@ public class Utils
         return list;
     }
 
+    public static T GetRandomElementFromList<T>(List<T> list)
+    {
+        int randNum = UnityEngine.Random.Range(0, list.Count);
+        return list[randNum];
+    }
+
     public static int convertToInt(string str)
     {
         int result = 0;
@@ -57,6 +63,11 @@ public class Utils
         }
 
         return result;
+    }
+
+    public static List<ENUM> GetListFromEnum<ENUM>() where ENUM : struct, IConvertible
+    {
+        return new List<ENUM>((ENUM[])Enum.GetValues(typeof(ENUM)));
     }
 
     /// <summary>
