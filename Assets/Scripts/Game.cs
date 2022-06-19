@@ -33,6 +33,7 @@ public class Game : MonoBehaviour
     public bool IsPlaying { get { return m_gameState == EGameState.PLAYING; } }
     private List<IngredientData> m_ingredientDataList = new List<IngredientData>();
     private int m_curIngredientAmout = 3;
+    private PowerupTimingMgr m_powerupTimingMgr = new PowerupTimingMgr();
     void Awake() {
         m_gameState = EGameState.INITILAIZING;
         Game._inst = this;
@@ -40,7 +41,7 @@ public class Game : MonoBehaviour
 
         GameEvent.CircleRotate_Pick.AddListener(OnCircleRotatePick);
         GameEvent.Character_GetAnItem.AddListener(OnCharacterGetAnItem);
-        GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
+        GameEvent.Character_LivesChanged.AddListener(OnCharacterLivesChanged);
         GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
     }
 
@@ -52,6 +53,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_powerupTimingMgr.Update();
     }
 
     void resetListItem(int count) 
@@ -79,7 +81,18 @@ public class Game : MonoBehaviour
     private void OnCircleRotatePick(float angle)
     {
         var item = circleItemMgr.getItemFromAngle(angle);
-        localCharacter.onGetAnItem(item);
+        if (item == EItemType.POWER_UP)
+        {
+            var powerupInfo = circleItemMgr.PowerupItem.GetPowerupInfo();
+            if (powerupInfo != EPowerupType.NONE)
+            {
+                GameEvent.Game_PickPowerup.Invoke(powerupInfo);
+            }
+        }
+        else
+        {
+            localCharacter.onGetAnItem(item);
+        }
     }
 
     public void AddNewCustomer(CustomerController customer)
@@ -290,7 +303,7 @@ public class Game : MonoBehaviour
         return new OctopusData();
     }
 
-    private void OnCharacterLivesLost(int lives)
+    private void OnCharacterLivesChanged(int lives)
     {
         if (lives <= 0)
         {

@@ -12,7 +12,7 @@ public class GameUI : MonoBehaviour
     void Awake()
     {
         GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
-        GameEvent.Character_LivesLost.AddListener(OnCharacterLivesLost);
+        GameEvent.Character_LivesChanged.AddListener(OnCharacterLivesChanged);
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
         GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
@@ -33,14 +33,13 @@ public class GameUI : MonoBehaviour
         setScore(score);
     }
 
-    private void OnCharacterLivesLost(int lives)
+    private void OnCharacterLivesChanged(int lives)
     {
         setLive(lives);
     }
 
     private void OnCharacterDataChanged(OctopusData data)
     {
-        setLive(data.octopusLives);
         skinBtnText.text = data.octopusType.ToString();
     }
 

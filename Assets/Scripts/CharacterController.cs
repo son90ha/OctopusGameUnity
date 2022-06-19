@@ -22,7 +22,7 @@ public enum EOctopusType
     FortunateOcto,
 }
 
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, IOnPickPowerup
 {
     public Transform itemGotLayout;
     public SpriteRenderer octopusSpriteRender;
@@ -39,6 +39,7 @@ public class CharacterController : MonoBehaviour
         set
         {
             m_octopusData = value;
+            Lives = m_octopusData.octopusLives;
             SetSkinColor(m_octopusData.octopusType);
             GameEvent.Character_DataChanged.Invoke(m_octopusData);
         }
@@ -66,11 +67,26 @@ public class CharacterController : MonoBehaviour
         get { return m_octopusData.octopusType; }
     }
 
+    private int m_lives = 0;
+    public int Lives
+    {
+        get { return m_lives; }
+        set
+        {
+            if (m_lives != value)
+            {
+                m_lives = value;
+                GameEvent.Character_LivesChanged.Invoke(value);
+            }
+        }
+    }
+
     void Awake()
     {
         GameEvent.Game_OrderFinish.AddListener(OnOrderFinish);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
         GameEvent.Customer_TimeOut.AddListener(OnCustomerTimeOut);
+        GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
     }
 
     // Start is called before the first frame update
@@ -85,12 +101,6 @@ public class CharacterController : MonoBehaviour
 
     public void onGetAnItem(EItemType itemType)
     {
-        if (itemType == EItemType.POWER_UP)
-        {
-            //Do power up here;
-            Debug.Log("[CharacterController] onGetAnItem - Pick PowerUp");
-            return;
-        }
         var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab, itemGotLayout);
         newItem.AddComponent<UnityEngine.UI.LayoutElement>();
         newItem.transform.localScale = new Vector3(0.3f, 0.3f, 1);
@@ -128,8 +138,7 @@ public class CharacterController : MonoBehaviour
     {
         if (Random.Range(0, 100) > m_octopusData.lifeLostPercent)
         {
-            m_octopusData.octopusLives -= 1;
-            GameEvent.Character_LivesLost.Invoke(m_octopusData.octopusLives);
+            Lives -= 1;
         }
         else
         {
@@ -152,5 +161,18 @@ public class CharacterController : MonoBehaviour
         }
 
         octopusSpriteRender.color = color;
+    }
+
+    public void OnPickPowerUp(EPowerupType powerupType)
+    {
+        switch (powerupType)
+        {
+            case EPowerupType.EXTRA_HP:
+                {
+                    Lives += 1;
+                    break;
+                }
+            default: return;
+        }
     }
 }

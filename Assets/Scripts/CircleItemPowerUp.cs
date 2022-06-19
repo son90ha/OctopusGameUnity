@@ -17,7 +17,20 @@ public class CircleItemPowerUp : CircleItemBase
 
         m_spriteRenderer.gameObject.SetActive(false);
         m_listPowerupType = Utils.GetListFromEnum<EPowerupType>();
-        m_listPowerupType.RemoveAt(m_listPowerupType.IndexOf(EPowerupType.NONE));
+
+        // Remove NONE type
+        int indexOfNone = m_listPowerupType.IndexOf(EPowerupType.NONE);
+        if (indexOfNone >= 0)
+        {
+            m_listPowerupType.RemoveAt(m_listPowerupType.IndexOf(EPowerupType.NONE));
+        }
+
+        // Remove ExtraLives type to make a condition after.
+        int indexOfExtraHp = m_listPowerupType.IndexOf(EPowerupType.EXTRA_HP);
+        if (indexOfExtraHp >= 0)
+        {
+            m_listPowerupType.RemoveAt(indexOfExtraHp);
+        }
 
         var newGameObject = new GameObject("PowerupText");
         newGameObject.transform.SetParent(parent);
@@ -34,7 +47,7 @@ public class CircleItemPowerUp : CircleItemBase
 
     public override EPowerupType GetPowerupInfo()
     {
-        return EPowerupType.EXTRA_HP;
+        return m_curPowerupType;
     }
 
     private void OnCircleRotateThrough()
@@ -43,7 +56,14 @@ public class CircleItemPowerUp : CircleItemBase
 
         if (CheckSpawnPowerup())
         {
-            m_curPowerupType = Utils.GetRandomElementFromList(m_listPowerupType);
+            var local = Game.inst.localCharacter;
+            bool hasExtraLives = local.Lives < local.octopusData.octopusLives;
+            List<EPowerupType> newList = new List<EPowerupType>(m_listPowerupType);
+            if (hasExtraLives)
+            {
+                newList.Add(EPowerupType.EXTRA_HP);
+            }
+            m_curPowerupType = Utils.GetRandomElementFromList(newList);
             m_textMesh.text = m_curPowerupType.ToString();
         }
     }
