@@ -36,4 +36,9 @@ public abstract class CircleItemBase
         Debug.LogError("[CircleItemBase] GetPowerupInfo - Method not implement for itemType: " + m_itemType.ToString());
         return EPowerupType.NONE;
     }
+
+    virtual public void OnDestroy()
+    {
+
+    }
 }

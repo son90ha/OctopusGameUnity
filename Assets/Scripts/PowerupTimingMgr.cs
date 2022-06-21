@@ -13,6 +13,7 @@ public class PowerupTiming
         m_mgr = mgr;
         m_tinming = duration;
         m_powerupType = powerupType;
+        GameEvent.Powerup_ActiveChanged.Invoke(m_powerupType, true);
     }
     public void Update()
     {
@@ -23,6 +24,7 @@ public class PowerupTiming
             {
                 m_tinming = 0;
                 m_mgr.PowerupExpired(this);
+                GameEvent.Powerup_ActiveChanged.Invoke(m_powerupType, false);
             }
         }
     }

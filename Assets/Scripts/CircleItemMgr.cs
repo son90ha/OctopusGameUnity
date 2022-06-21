@@ -19,7 +19,7 @@ public class CircleItemMgr : MonoBehaviour
 
     void Awake()
     {
-
+        GameEvent.Powerup_ActiveChanged.AddListener(OnPowerupActiveChanged);
     }
 
     // Start is called before the first frame update
@@ -67,6 +67,7 @@ public class CircleItemMgr : MonoBehaviour
         {
             GameObject.Destroy(itemContainer.transform.GetChild(i).gameObject);
         }
+        m_listCircleItem.ForEach(e => e.OnDestroy());
         m_listCircleItem.Clear();
         m_powerupItem = null;
     }
@@ -86,5 +87,13 @@ public class CircleItemMgr : MonoBehaviour
         }
         
         return m_listCircleItem[index].ItemType;
+    }
+
+    private void OnPowerupActiveChanged(EPowerupType powerupType, bool active)
+    {
+        if (powerupType == EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE)
+        {
+
+        }
     }
 }

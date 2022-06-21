@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +19,15 @@ public class CustomerController : MonoBehaviour
     private float m_totalTime = 1;
     private List<EItemType> m_listOrderItem = new List<EItemType>();
     private float m_patientPercent;
+    private bool m_slowTimeActive = false;
     public int PatientPercent
     {
         get { return Mathf.RoundToInt(m_patientPercent * 100); }
+    }
+
+    void Awake()
+    {
+        GameEvent.Powerup_ActiveChanged.AddListener(OnPowerupActiveChanged);
     }
 
     // Start is called before the first frame update
@@ -33,7 +40,8 @@ public class CustomerController : MonoBehaviour
     void Update()
     {
         if (m_curTime > 0) {
-            m_curTime = Mathf.Max(0, m_curTime - Time.deltaTime);
+            float subTime = m_slowTimeActive ? Time.deltaTime * Game.inst.powerupAffectData.slowTimeTime : Time.deltaTime;
+            m_curTime = Mathf.Max(0, m_curTime - subTime);
             m_patientPercent = m_curTime / m_totalTime;
             progressBar.setProgress(m_patientPercent);
             if (m_curTime == 0)
@@ -100,5 +108,17 @@ public class CustomerController : MonoBehaviour
     public int IngredientAmount
     {
         get { return m_listOrderItem.Count; }
+    }
+
+    private void OnPowerupActiveChanged(EPowerupType powerupType, bool active)
+    {
+        if (powerupType == EPowerupType.SLOW_TIME)
+        {
+            m_slowTimeActive = active;
+            if (active)
+            {
+                Debug.Log("Hes Slow effect");
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
@@ -24,4 +25,7 @@ public static class GameEvent
 
     // Customer Event
     public static UnityEvent Customer_TimeOut = new UnityEvent();
+
+    // Powerup
+    public static UnityEvent<EPowerupType, bool> Powerup_ActiveChanged = new UnityEvent<EPowerupType, bool>();
 }
