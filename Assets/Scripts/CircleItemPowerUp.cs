@@ -38,11 +38,11 @@ public class CircleItemPowerUp : CircleItemBase, IOnPickPowerup
         m_textMesh = newGameObject.AddComponent<TextMesh>();
         m_textMesh.color = Color.black;
         m_textMesh.text = "";
-        m_textMesh.anchor = TextAnchor.MiddleRight;
-        m_textMesh.alignment = TextAlignment.Right;
+        m_textMesh.anchor = TextAnchor.MiddleCenter;
+        m_textMesh.alignment = TextAlignment.Center;
         m_textMesh.characterSize = 0.05f;
         m_textMesh.fontSize = 12;
-        newGameObject.transform.localPosition = pos + new Vector3(0.05f, 0, 0);
+        newGameObject.transform.localPosition = pos;
         newGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
@@ -64,8 +64,8 @@ public class CircleItemPowerUp : CircleItemBase, IOnPickPowerup
             {
                 newList.Add(EPowerupType.EXTRA_HP);
             }
-            m_curPowerupType = Utils.GetRandomElementFromList(newList);
-            // m_curPowerupType = EPowerupType.SLOW_TIME;
+            // m_curPowerupType = Utils.GetRandomElementFromList(newList);
+            m_curPowerupType = EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE;
             m_textMesh.text = m_curPowerupType.ToString();
         }
     }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class PowerupDataScriptTable : ScriptableObject
 {
     public float extraPatienceTime;
-    public float slowTimeTime;
-    public float simplifyOrderTime;
-    public float scoreMultiplierTime;
-    public float increaseIngredientWheelSizeTime;
+    public float slowTimeValue;
+    public int simplifyOrderDecreValue;
+    public float scoreMultiplierValue;
+    public float increaseIngredientWheelSize;
 }

@@ -95,10 +95,10 @@ public class CircleRotate : MonoBehaviour
     {
         if (powerupType == EPowerupType.SLOW_TIME)
         {
-            m_bonusSpeed = active ? -Game.inst.powerupAffectData.slowTimeTime * m_baseSpeed : 0;
+            m_bonusSpeed = active ? -Game.inst.powerupAffectData.slowTimeValue * m_baseSpeed : 0;
             if (active)
             {
-                Debug.Log("Slow time in rotate. BonusSpeed = " + m_bonusSpeed);
+                // Apply slow time powerup
             }
         }
     }

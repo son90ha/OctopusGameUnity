@@ -40,7 +40,7 @@ public class CustomerController : MonoBehaviour
     void Update()
     {
         if (m_curTime > 0) {
-            float subTime = m_slowTimeActive ? Time.deltaTime * Game.inst.powerupAffectData.slowTimeTime : Time.deltaTime;
+            float subTime = m_slowTimeActive ? Time.deltaTime * Game.inst.powerupAffectData.slowTimeValue : Time.deltaTime;
             m_curTime = Mathf.Max(0, m_curTime - subTime);
             m_patientPercent = m_curTime / m_totalTime;
             progressBar.setProgress(m_patientPercent);
@@ -117,7 +117,7 @@ public class CustomerController : MonoBehaviour
             m_slowTimeActive = active;
             if (active)
             {
-                Debug.Log("Hes Slow effect");
+                // Apply slow Powerup
             }
         }
     }

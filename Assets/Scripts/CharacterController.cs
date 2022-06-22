@@ -126,8 +126,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         float bonusIncrease = m_octopusData.octopusBonusPerCustomer;
         if (Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SCORE_MULTIPLIER))
         {
-            bonusIncrease *= Game.inst.powerupAffectData.scoreMultiplierTime;
-            Debug.Log("Apply Score Mutly Powerup");
+            bonusIncrease *= Game.inst.powerupAffectData.scoreMultiplierValue;
         }
         Score += Mathf.RoundToInt(baseScore * bonusIncrease);
     }
@@ -149,7 +148,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         }
         else
         {
-            Debug.Log("Apply LifeLost ability");
+            // Apply LifeLost ability
         }
     }
 
