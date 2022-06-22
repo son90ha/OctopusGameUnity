@@ -7,14 +7,16 @@ using UnityEngine.EventSystems;
 public class CircleRotate : MonoBehaviour
 {
     public GameObject circleIcon;
-
-    private float curSpeed = 150;
+    private float m_baseSpeed = 150;
+    private float m_bonusSpeed = 0;
     private const float k_defaultAngle = 90;
     private bool m_inPowerupArea = false;
+    private bool m_isStopped = false;
     void Awake()
     {
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
+        GameEvent.Powerup_ActiveChanged.AddListener(OnPowerupActiveChanged);
     }
 
     // Start is called before the first frame update
@@ -31,9 +33,9 @@ public class CircleRotate : MonoBehaviour
             OnClick();
         }
 
-        if (Game.inst.IsPlaying)
+        if (Game.inst.IsPlaying && !m_isStopped)
         {
-            float rotateAngle = Time.deltaTime * curSpeed;
+            float rotateAngle = Time.deltaTime * GetCurSpeed();
             transform.Rotate(Vector3.forward, -rotateAngle);
             CheckInPowerupArea(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
         }
@@ -46,9 +48,16 @@ public class CircleRotate : MonoBehaviour
             return;
         }
 
-        if (Game.inst.IsPlaying)
+        if (m_isStopped)
         {
-            GameEvent.CircleRotate_Pick.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
+            m_isStopped = false;
+        }
+        else
+        {
+            if (Game.inst.IsPlaying)
+            {
+                GameEvent.CircleRotate_Pick.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
+            }
         }
     }
 
@@ -59,11 +68,12 @@ public class CircleRotate : MonoBehaviour
 
     private void OnCharacterDataChanged(OctopusData data)
     {
-        this.curSpeed = data.tentacleSpeed;
+        this.m_baseSpeed = data.tentacleSpeed;
     }
 
     private void OnOrderWrong()
     {
+        m_isStopped = true;
         ResetRotateAngle();
     }
 
@@ -88,5 +98,22 @@ public class CircleRotate : MonoBehaviour
                 GameEvent.CircleRotate_ThroughPowerup.Invoke();
             }
         }
+    }
+
+    private void OnPowerupActiveChanged(EPowerupType powerupType, bool active)
+    {
+        if (powerupType == EPowerupType.SLOW_TIME)
+        {
+            m_bonusSpeed = active ? -Game.inst.powerupAffectData.slowTimeValue * m_baseSpeed : 0;
+            if (active)
+            {
+                // Apply slow time powerup
+            }
+        }
+    }
+
+    private float GetCurSpeed()
+    {
+        return m_baseSpeed + m_bonusSpeed;
     }
 }

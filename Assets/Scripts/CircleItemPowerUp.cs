@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleItemPowerUp : CircleItemBase
+public class CircleItemPowerUp : CircleItemBase, IOnPickPowerup
 {
     private EPowerupType m_curPowerupType = EPowerupType.NONE;
     private static readonly float s_rateAppearMin = 0.1f;
@@ -14,6 +14,7 @@ public class CircleItemPowerUp : CircleItemBase
     public CircleItemPowerUp(Transform parent, Vector3 pos, float from, float to, EItemType type) : base(parent, pos, from, to, type)
     {
         GameEvent.CircleRotate_ThroughPowerup.AddListener(OnCircleRotateThrough);
+        GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
 
         m_spriteRenderer.gameObject.SetActive(false);
         m_listPowerupType = Utils.GetListFromEnum<EPowerupType>();
@@ -37,11 +38,11 @@ public class CircleItemPowerUp : CircleItemBase
         m_textMesh = newGameObject.AddComponent<TextMesh>();
         m_textMesh.color = Color.black;
         m_textMesh.text = "";
-        m_textMesh.anchor = TextAnchor.MiddleRight;
-        m_textMesh.alignment = TextAlignment.Right;
+        m_textMesh.anchor = TextAnchor.MiddleCenter;
+        m_textMesh.alignment = TextAlignment.Center;
         m_textMesh.characterSize = 0.05f;
         m_textMesh.fontSize = 12;
-        newGameObject.transform.localPosition = pos + new Vector3(0.05f, 0, 0);
+        newGameObject.transform.localPosition = pos;
         newGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
@@ -64,6 +65,7 @@ public class CircleItemPowerUp : CircleItemBase
                 newList.Add(EPowerupType.EXTRA_HP);
             }
             m_curPowerupType = Utils.GetRandomElementFromList(newList);
+            // m_curPowerupType = EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE;
             m_textMesh.text = m_curPowerupType.ToString();
         }
     }
@@ -81,6 +83,19 @@ public class CircleItemPowerUp : CircleItemBase
             m_curAppearRate = Mathf.Min(m_curAppearRate + s_rateIncrease, s_rateAppearMax);
         }
 
+        // return true;
         return result;
+    }
+
+    public void OnPickPowerUp(EPowerupType powerupType)
+    {
+        m_curPowerupType = EPowerupType.NONE;
+        m_textMesh.text = "";
+    }
+
+    public override void OnDestroy()
+    {
+        GameEvent.CircleRotate_ThroughPowerup.RemoveListener(OnCircleRotateThrough);
+        GameEvent.Game_PickPowerup.RemoveListener(OnPickPowerUp);
     }
 }

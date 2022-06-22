@@ -50,23 +50,43 @@ public class CustomerSpawnMgr : MonoBehaviour
         var newCustom = Instantiate(GamePrefabMgr.inst.customerPrefab, customerLayout);
         var customerController = newCustom.GetComponent<CustomerController>();
         int easyOrderDecrease = (Random.Range(0, 100) > Game.inst.localCharacter.EasyOrderPercent) ? 0 : 1;
-        int ingredientAmountMax = Mathf.Min(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease);
+        int simplifyOrderDecrease = Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SIMPLIFY_ORDER) ? Game.inst.powerupAffectData.simplifyOrderDecreValue : 0;
+        int ingredientAmountMax = Mathf.Min(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease - simplifyOrderDecrease);
 
         //  Apply easy order ability
         if (easyOrderDecrease > 0)
         {
-            Debug.Log("Apply easy order ability");
+        }
+        //
+
+        // Apply simplify order Powerup
+        if (simplifyOrderDecrease > 0)
+        {
+
         }
         //
 
         int ingradientAmount = Random.Range(CurCustomerGenData.IngredientAmountMin, ingredientAmountMax);
-        float patienceTime = Random.Range(CurCustomerGenData.PatienceMin, CurCustomerGenData.PatienceMax + 1);
-        customerController.init(ingradientAmount, patienceTime + Game.inst.localCharacter.PatienceBonus);
+        customerController.init(ingradientAmount, GetCurPatienceTime());
         m_spawnInterval = Random.Range(CurCustomerGenData.SpawnIntervalMin, CurCustomerGenData.SpawnIntervalMax + 1);
     }
 
     private void OnCustomerClear()
     {
         CreateCustomer();
+    }
+
+    /// <summary>
+    /// Get Patient time with localCharacter bonus and powerup
+    /// <summary>
+    private float GetCurPatienceTime()
+    {
+        float patienceBase = Random.Range(CurCustomerGenData.PatienceMin, CurCustomerGenData.PatienceMax + 1);
+        float bonusTime = Game.inst.localCharacter.PatienceBonus;
+        if (Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.EXTRA_PATIENCE))
+        {
+            bonusTime = Game.inst.powerupAffectData.extraPatienceTime;
+        }
+        return patienceBase + bonusTime;
     }
 }

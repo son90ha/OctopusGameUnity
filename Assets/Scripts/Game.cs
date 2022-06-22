@@ -33,10 +33,14 @@ public class Game : MonoBehaviour
     public bool IsPlaying { get { return m_gameState == EGameState.PLAYING; } }
     private List<IngredientData> m_ingredientDataList = new List<IngredientData>();
     private int m_curIngredientAmout = 3;
-    private PowerupTimingMgr m_powerupTimingMgr = new PowerupTimingMgr();
+    private PowerupTimingMgr m_powerupTimingMgr;
+    public PowerupTimingMgr PowerupTimingMgr { get { return m_powerupTimingMgr; } }
+    public PowerupDataScriptTable powerupAffectData;
+
     void Awake() {
         m_gameState = EGameState.INITILAIZING;
         Game._inst = this;
+        m_powerupTimingMgr = new PowerupTimingMgr();
         LoadDataBase();
 
         GameEvent.CircleRotate_Pick.AddListener(OnCircleRotatePick);

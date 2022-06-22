@@ -122,7 +122,13 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
     private void OnOrderFinish(CustomerController customer)
     {
         ResetItemGot();
-        Score += Mathf.RoundToInt((customer.IngredientAmount + customer.PatientPercent) * m_octopusData.octopusBonusPerCustomer);
+        int baseScore = (customer.IngredientAmount + customer.PatientPercent);
+        float bonusIncrease = m_octopusData.octopusBonusPerCustomer;
+        if (Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SCORE_MULTIPLIER))
+        {
+            bonusIncrease *= Game.inst.powerupAffectData.scoreMultiplierValue;
+        }
+        Score += Mathf.RoundToInt(baseScore * bonusIncrease);
     }
 
     private void ResetItemGot()
@@ -142,7 +148,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         }
         else
         {
-            Debug.Log("Apply LifeLost ability");
+            // Apply LifeLost ability
         }
     }
 
