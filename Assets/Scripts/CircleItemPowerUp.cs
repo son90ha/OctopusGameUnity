@@ -64,8 +64,8 @@ public class CircleItemPowerUp : CircleItemBase, IOnPickPowerup
             {
                 newList.Add(EPowerupType.EXTRA_HP);
             }
-            // m_curPowerupType = Utils.GetRandomElementFromList(newList);
-            m_curPowerupType = EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE;
+            m_curPowerupType = Utils.GetRandomElementFromList(newList);
+            // m_curPowerupType = EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE;
             m_textMesh.text = m_curPowerupType.ToString();
         }
     }

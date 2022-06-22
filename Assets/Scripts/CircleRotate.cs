@@ -11,6 +11,7 @@ public class CircleRotate : MonoBehaviour
     private float m_bonusSpeed = 0;
     private const float k_defaultAngle = 90;
     private bool m_inPowerupArea = false;
+    private bool m_isStopped = false;
     void Awake()
     {
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
@@ -32,7 +33,7 @@ public class CircleRotate : MonoBehaviour
             OnClick();
         }
 
-        if (Game.inst.IsPlaying)
+        if (Game.inst.IsPlaying && !m_isStopped)
         {
             float rotateAngle = Time.deltaTime * GetCurSpeed();
             transform.Rotate(Vector3.forward, -rotateAngle);
@@ -47,9 +48,16 @@ public class CircleRotate : MonoBehaviour
             return;
         }
 
-        if (Game.inst.IsPlaying)
+        if (m_isStopped)
         {
-            GameEvent.CircleRotate_Pick.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
+            m_isStopped = false;
+        }
+        else
+        {
+            if (Game.inst.IsPlaying)
+            {
+                GameEvent.CircleRotate_Pick.Invoke(Utils.ConvertTo360Degree(transform.localEulerAngles.z));
+            }
         }
     }
 
@@ -65,6 +73,7 @@ public class CircleRotate : MonoBehaviour
 
     private void OnOrderWrong()
     {
+        m_isStopped = true;
         ResetRotateAngle();
     }
 
