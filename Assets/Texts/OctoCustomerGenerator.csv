@@ -4,5 +4,5 @@ SpawnIntervalMin,5,5,4,4,3,3,2,2
 SpawnIntervalMax,12,11,10,9,8,7,7,7
 IngredientAmountMin,1,1,1,1,2,2,2,2
 IngredientAmountMax,2,3,3,4,5,5,6,6
-PatienceMin,10,7,6,6,5,5,5,5
+PatienceMin,10,7,6,5,4,4,3,3
 PatienceMax,25,22,20,18,16,14,12,10
