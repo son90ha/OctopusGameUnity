@@ -125,6 +125,10 @@ public class Game : MonoBehaviour
         {
             GameEvent.Game_OrderWrong.Invoke();
         }
+        else
+        {
+            localCharacter.ChangeState(ECharacterState.RIGHT_GRAB);
+        }
     }
 
     public void RemoveCustomer(CustomerController customer)

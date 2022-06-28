@@ -24,6 +24,7 @@ public enum EOctopusType
 
 public class CharacterController : MonoBehaviour, IOnPickPowerup
 {
+    //#region LOCAL PROPERTY
     public Transform itemGotLayout;
     public SpriteRenderer octopusSpriteRender;
     private List<EItemType> m_curListItemGot = new List<EItemType>();
@@ -81,12 +82,20 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         }
     }
 
+    private CharacterStateMachine m_stateMachine;
+    public Animator octopusEmoteAnimator;
+    private Coroutine m_routine = null;
+    //#endregion LOCAL PROPERTY
+
     void Awake()
     {
+        CreateStateMachine();
+
         GameEvent.Game_OrderFinish.AddListener(OnOrderFinish);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
         GameEvent.Customer_TimeOut.AddListener(OnCustomerTimeOut);
         GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
+        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
@@ -97,6 +106,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
     // Update is called once per frame
     void Update()
     {
+        m_stateMachine.Update(Time.deltaTime);
     }
 
     public void onGetAnItem(EItemType itemType)
@@ -114,10 +124,12 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
     private void OnCustomerTimeOut()
     {
         LivesLost();
+        ChangeState(ECharacterState.CUS_FAILED);
     }
     private void OnOrderWrong()
     {
         ResetItemGot();
+        ChangeState(ECharacterState.WRONG_GRAB);
     }
     private void OnOrderFinish(CustomerController customer)
     {
@@ -129,6 +141,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
             bonusIncrease *= Game.inst.powerupAffectData.scoreMultiplierValue;
         }
         Score += Mathf.RoundToInt(baseScore * bonusIncrease);
+        ChangeState(ECharacterState.CUS_SERVED);
     }
 
     private void ResetItemGot()
@@ -180,5 +193,81 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
                 }
             default: return;
         }
+    }
+
+    private void CreateStateMachine()
+    {
+        var normalState = new NormalState();
+        normalState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine = new CharacterStateMachine(this, normalState);
+
+        var curFailedState = new CurFailedState();
+        curFailedState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine.AddState(curFailedState);
+
+        var cusServedState = new CusServedState();
+        cusServedState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine.AddState(cusServedState);
+
+        var rightGrabState = new RightGrabState();
+        rightGrabState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine.AddState(rightGrabState);
+
+        var wrongGrabState = new WrongGrabState();
+        wrongGrabState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine.AddState(wrongGrabState);
+    }
+
+    public void ChangeState(ECharacterState state)
+    {
+        switch (state)
+        {
+            case ECharacterState.NORMAL:
+                {
+                    m_stateMachine.ChangeState<NormalState>();
+                    break;
+                }
+            case ECharacterState.CUS_FAILED:
+                {
+                    m_stateMachine.ChangeState<CurFailedState>();
+                    break;
+                }
+            case ECharacterState.CUS_SERVED:
+                {
+                    m_stateMachine.ChangeState<CusServedState>();
+                    break;
+                }
+            case ECharacterState.RIGHT_GRAB:
+                {
+                    m_stateMachine.ChangeState<RightGrabState>();
+                    break;
+                }
+            case ECharacterState.WRONG_GRAB:
+                {
+                    m_stateMachine.ChangeState<WrongGrabState>();
+                    break;
+                }
+            default: m_stateMachine.ChangeState<NormalState>(); break;
+        }
+        if (m_routine != null)
+        {
+            StopCoroutine(m_routine);
+        }
+
+        m_routine = StartCoroutine(WaitToNormalState());
+    }
+
+    private IEnumerator<WaitForSeconds> WaitToNormalState()
+    {
+        yield return new WaitForSeconds(1);
+        if (m_stateMachine.GetState<NormalState>() != null)
+        {
+            ChangeState(ECharacterState.NORMAL);
+        }
+    }
+
+    private void OnGameOver()
+    {
+        ChangeState(ECharacterState.NORMAL);
     }
 }

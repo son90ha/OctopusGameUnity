@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "input"
+	"last_search.DA949528" = "automatic slice"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
 }
@@ -56,12 +56,12 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"s"
 	"i"
 	"in"
 	"ta"
 	"si"
 	"pro"
-	"s"
 ]
 searchItemFavorites = [
 ]
