@@ -10,7 +10,7 @@ public class CharacterState : FSM.State<CharacterController>
     }
     public override void Begin()
     {
-        Debug.Log("Begin: " + getEnumState().ToString());
+        // Debug.Log("Begin: " + getEnumState().ToString());
         _context.octopusEmoteAnimator.SetInteger("CharacterState", ((int)getEnumState()));
     }
 }

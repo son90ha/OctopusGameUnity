@@ -37,4 +37,5 @@ public enum ECharacterState
     WRONG_GRAB,
     CUS_SERVED,
     CUS_FAILED,
+    POWER_UP,
 }

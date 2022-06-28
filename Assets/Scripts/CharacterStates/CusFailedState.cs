@@ -1,8 +1,8 @@
-public class WrongGrabState : CharacterState
+public class CusFailedState : CharacterState
 {
     public override ECharacterState getEnumState()
     {
-        return ECharacterState.WRONG_GRAB;
+        return ECharacterState.CUS_FAILED;
     }
 
     public override void Begin()

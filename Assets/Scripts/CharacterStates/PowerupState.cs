@@ -1,8 +1,8 @@
-public class WrongGrabState : CharacterState
+public class PowerupState : CharacterState
 {
     public override ECharacterState getEnumState()
     {
-        return ECharacterState.WRONG_GRAB;
+        return ECharacterState.POWER_UP;
     }
 
     public override void Begin()

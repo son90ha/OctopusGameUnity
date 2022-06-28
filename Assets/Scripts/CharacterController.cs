@@ -184,6 +184,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
 
     public void OnPickPowerUp(EPowerupType powerupType)
     {
+        ChangeState(ECharacterState.POWER_UP);
         switch (powerupType)
         {
             case EPowerupType.EXTRA_HP:
@@ -201,7 +202,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         normalState.SetMachineAndContext(m_stateMachine, this);
         m_stateMachine = new CharacterStateMachine(this, normalState);
 
-        var curFailedState = new CurFailedState();
+        var curFailedState = new CusFailedState();
         curFailedState.SetMachineAndContext(m_stateMachine, this);
         m_stateMachine.AddState(curFailedState);
 
@@ -216,6 +217,10 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
         var wrongGrabState = new WrongGrabState();
         wrongGrabState.SetMachineAndContext(m_stateMachine, this);
         m_stateMachine.AddState(wrongGrabState);
+
+        var powerupState = new PowerupState();
+        powerupState.SetMachineAndContext(m_stateMachine, this);
+        m_stateMachine.AddState(powerupState);
     }
 
     public void ChangeState(ECharacterState state)
@@ -229,7 +234,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
                 }
             case ECharacterState.CUS_FAILED:
                 {
-                    m_stateMachine.ChangeState<CurFailedState>();
+                    m_stateMachine.ChangeState<CusFailedState>();
                     break;
                 }
             case ECharacterState.CUS_SERVED:
@@ -245,6 +250,11 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
             case ECharacterState.WRONG_GRAB:
                 {
                     m_stateMachine.ChangeState<WrongGrabState>();
+                    break;
+                }
+            case ECharacterState.POWER_UP:
+                {
+                    m_stateMachine.ChangeState<PowerupState>();
                     break;
                 }
             default: m_stateMachine.ChangeState<NormalState>(); break;
