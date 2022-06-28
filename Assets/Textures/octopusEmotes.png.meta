@@ -1,0 +1,1918 @@
+fileFormatVersion: 2
+guid: 9083e80137e6f7449b195b652f6992ee
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: octopusEmotes_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bad9a378c603b3843a79c43d059e4c53
+      internalID: 1706491428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2100526f8d6034690e6bd5ef882fae
+      internalID: 358289759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b4cc92b97410c4438eda028caa28abc
+      internalID: -709184625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6ae140ddfd3e3a45abcf22b99683215
+      internalID: 1746505242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c428083f8c8ce7e40b786ae8808e5295
+      internalID: -1075816404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168b8b82442fc9641b408ca1495fc754
+      internalID: 1657499456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_6
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a7b8a4ba68fe14aa75ff8993f413ef
+      internalID: 617466703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_7
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be531ccc485b7049b716f4a9bac8231
+      internalID: 1671530839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_8
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870d192b7c65d8b408b783ccd3d01ce6
+      internalID: 693185418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_9
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 847
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8303952e37365084e808c56904d985d8
+      internalID: -135018771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf23c9e1e2620c64481bf49473e3cf95
+      internalID: -1756304175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e62bd0e98e12e49ae01967928ae8b4
+      internalID: -1162570737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03baf213e1fa46e46b262ba6589b74dd
+      internalID: -226579931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_13
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19bd095ee3be8eb4f801171f7de6b296
+      internalID: -1522968513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_14
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca8875ccc6866647abd7e86c37e8418
+      internalID: 1109105719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89cde7d1c3d85834cac701836d2f5963
+      internalID: 1934061038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_16
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3ad720b39533948948d55201fe0abd
+      internalID: -541427735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_17
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c89adc9a6599a48a197e83a5aeecd1
+      internalID: -1780620388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_18
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 294326911eb491147a84e859b84a8b35
+      internalID: 1496941187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_19
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 726
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85304a225def4e4a97d68543257facb
+      internalID: 1399040824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f8e502b64a2434aa43bd5dc6d0f63b
+      internalID: 919864845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_21
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6309b6f4eeab1245b1c254906776eb3
+      internalID: 1028560146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_22
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fa6622cc5cc634b8c5505c47b5a23d
+      internalID: 1851965718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_23
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73db236b54933384dad7fca1baa8530e
+      internalID: 276531316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_24
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390659f7469c2f14fa334af1f609f076
+      internalID: 1035630103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_25
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d442e5163e922841bf85d7aaeb20afb
+      internalID: 1524917105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_26
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b323854cb1d9442ba9f91238f8ffe0
+      internalID: 1144635888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_27
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd5f7d577cd09f4d98c6144012e90d4
+      internalID: -322960656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_28
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9127babb020f9be46979e9226d6163c6
+      internalID: -1513199331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_29
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 605
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 412250e2ff788134a8c23f6a8833b9bd
+      internalID: 1490608185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed81a0a7eee3b8d40ad179a2c75f2f49
+      internalID: -939774860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_31
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85a403497410c742be990f7cbf0a5c1
+      internalID: 553363265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_32
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0e26358de9d77408eb59983baf7574
+      internalID: -287137812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_33
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce0183e8f409b464995476ee8f9af332
+      internalID: -1996137138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_34
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5448d85f9e3b7674b8d8a510495fb633
+      internalID: 1280231539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_35
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ff2909775fd9244a9e56b098803e1bd
+      internalID: 1400211621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_36
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 091451ea02f81114690834837f5ef822
+      internalID: 1639054105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_37
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5e316c81c1447459a7922544ad3834
+      internalID: -273163713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_38
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8a8f9c69a5cfe478cc6b2143ce71a0
+      internalID: -1751949454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_39
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 484
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 820c2b3826cb45b47b26f02009827a51
+      internalID: -923918655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674f1ce3d5b2a834591b6f4815187094
+      internalID: -561535365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_41
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de07e3c79851e8942adc9da10ad128d6
+      internalID: -838573158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_42
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e9da177f5a65c4a8019d85a1ff3b23
+      internalID: -1172389717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_43
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0112311c0282f8847aebaa99d7169e4a
+      internalID: -1489686442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_44
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb61c7851dc17ff4096cd574a817dada
+      internalID: 985094504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_45
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e02f3ea26d8f86e4cbc2855d5cd93e83
+      internalID: 2034354281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_46
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe19f579ba9d6846a9f1b94f25eab75
+      internalID: -777416991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_47
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1d4db523ada9b4599efc2cb14e36f5
+      internalID: -296491707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_48
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 248a06505182bfa4fa90d5a831f0e9ff
+      internalID: 708402735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_49
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 363
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e12c57ac78388048928aa9a62e25626
+      internalID: 1064439847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be8db52c1961604398ac72644dffeca
+      internalID: -224340772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_51
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d83b071c25656f4ba3b2c3dda7d7a5e
+      internalID: -121184675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_52
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c339094bba930a4d957ed719b6ce836
+      internalID: -1284594881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_53
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac5109fc773b4e44da5869a75294162d
+      internalID: -1121783095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_54
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04e6448e528e2f45ba528a09711276f
+      internalID: 598880090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_55
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d192eba7a66b5de45b5ac39a91ff970c
+      internalID: 565561923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_56
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c742a5e286dac644bbf4c817f9bd6be1
+      internalID: 1975466172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_57
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de9db779bf465414592539595d0d5010
+      internalID: -851677818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_58
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319b6e2bb1554a74a8b248465f0d7d60
+      internalID: 1439675019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_59
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 242
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10374fa4b480be24e879a1904336a9b0
+      internalID: 205515188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491d53cad0a745540ab8d9e76d855302
+      internalID: -20750969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_61
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a88bc555d8370479fbdd73fd8df609
+      internalID: 2126049630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_62
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dd01777ab511c3468d322937e3aaca0
+      internalID: -238702451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_63
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbf80d8c4f967fa4aa940107e496b5fc
+      internalID: -792735821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_64
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1857956b6d20d4f428c7fa7b5434778e
+      internalID: 822624700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_65
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5218e5d654fd644a944fbffe4a5b65e
+      internalID: -579610965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_66
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718b920db15046345b2252929d66ce3c
+      internalID: -265172520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_67
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a27b6fdb8619f4e9d1a51496888117
+      internalID: 473039021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_68
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f38f0d464b76c74aa391f62136ffaa9
+      internalID: 1655231739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_69
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 121
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f40875ef3e8f44f9f9972b5df95c5b
+      internalID: -1246487093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f8f2918ebba4a439769a6bb767d035
+      internalID: -1605956188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_71
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ecd35a8a77a92d4c9ac721614d0a01d
+      internalID: -1181886909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_72
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5c9ebb8c0d8934db1bdf3e7780ca5d
+      internalID: 936157970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_73
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b564a1bcdbe7f914db2b45b6b4b07066
+      internalID: -468046832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_74
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ced21f59a4b344cbeb215d40130a3e
+      internalID: -271538482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_75
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac9c7349bd6f8b42ba943a350e0c0ca
+      internalID: -214473350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_76
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c4487200843df45b411cf3614287ad
+      internalID: -887670040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_77
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cb4d9fac737174898def7c18352108
+      internalID: -1377364260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_78
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620966dfc76d8e64d9883e09e347d747
+      internalID: -1313031883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: octopusEmotes_79
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 120.3
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d33df37c30eecb48bfb034b9146a446
+      internalID: -1540426744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      octopusEmotes_7: 1671530839
+      octopusEmotes_0: 1706491428
+      octopusEmotes_48: 708402735
+      octopusEmotes_29: 1490608185
+      octopusEmotes_72: 936157970
+      octopusEmotes_9: -135018771
+      octopusEmotes_76: -887670040
+      octopusEmotes_37: -273163713
+      octopusEmotes_65: -579610965
+      octopusEmotes_28: -1513199331
+      octopusEmotes_3: 1746505242
+      octopusEmotes_33: -1996137138
+      octopusEmotes_77: -1377364260
+      octopusEmotes_23: 276531316
+      octopusEmotes_54: 598880090
+      octopusEmotes_63: -792735821
+      octopusEmotes_78: -1313031883
+      octopusEmotes_69: -1246487093
+      octopusEmotes_59: 205515188
+      octopusEmotes_70: -1605956188
+      octopusEmotes_18: 1496941187
+      octopusEmotes_32: -287137812
+      octopusEmotes_13: -1522968513
+      octopusEmotes_43: -1489686442
+      octopusEmotes_56: 1975466172
+      octopusEmotes_68: 1655231739
+      octopusEmotes_11: -1162570737
+      octopusEmotes_73: -468046832
+      octopusEmotes_4: -1075816404
+      octopusEmotes_16: -541427735
+      octopusEmotes_42: -1172389717
+      octopusEmotes_30: -939774860
+      octopusEmotes_19: 1399040824
+      octopusEmotes_27: -322960656
+      octopusEmotes_38: -1751949454
+      octopusEmotes_1: 358289759
+      octopusEmotes_14: 1109105719
+      octopusEmotes_47: -296491707
+      octopusEmotes_12: -226579931
+      octopusEmotes_2: -709184625
+      octopusEmotes_41: -838573158
+      octopusEmotes_20: 919864845
+      octopusEmotes_60: -20750969
+      octopusEmotes_46: -777416991
+      octopusEmotes_17: -1780620388
+      octopusEmotes_52: -1284594881
+      octopusEmotes_31: 553363265
+      octopusEmotes_74: -271538482
+      octopusEmotes_34: 1280231539
+      octopusEmotes_67: 473039021
+      octopusEmotes_8: 693185418
+      octopusEmotes_26: 1144635888
+      octopusEmotes_39: -923918655
+      octopusEmotes_66: -265172520
+      octopusEmotes_62: -238702451
+      octopusEmotes_24: 1035630103
+      octopusEmotes_10: -1756304175
+      octopusEmotes_57: -851677818
+      octopusEmotes_45: 2034354281
+      octopusEmotes_25: 1524917105
+      octopusEmotes_53: -1121783095
+      octopusEmotes_36: 1639054105
+      octopusEmotes_64: 822624700
+      octopusEmotes_58: 1439675019
+      octopusEmotes_75: -214473350
+      octopusEmotes_5: 1657499456
+      octopusEmotes_6: 617466703
+      octopusEmotes_21: 1028560146
+      octopusEmotes_35: 1400211621
+      octopusEmotes_55: 565561923
+      octopusEmotes_22: 1851965718
+      octopusEmotes_61: 2126049630
+      octopusEmotes_15: 1934061038
+      octopusEmotes_51: -121184675
+      octopusEmotes_44: 985094504
+      octopusEmotes_71: -1181886909
+      octopusEmotes_49: 1064439847
+      octopusEmotes_50: -224340772
+      octopusEmotes_79: -1540426744
+      octopusEmotes_40: -561535365
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

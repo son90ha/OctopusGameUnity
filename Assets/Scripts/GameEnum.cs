@@ -29,3 +29,12 @@ public enum EPowerupType
     INCREASE_INGREDIENT_WHEEL_SIZE,
     NONE
 }
+
+public enum ECharacterState
+{
+    NORMAL,
+    RIGHT_GRAB,
+    WRONG_GRAB,
+    CUS_SERVED,
+    CUS_FAILED,
+}

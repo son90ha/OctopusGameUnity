@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerupAffect
   m_EditorClassIdentifier: 
   extraPatienceTime: 5
-  slowTimeTime: 0.5
-  simplifyOrderTime: 5
-  scoreMultiplierTime: 5
-  increaseIngredientWheelSizeTime: 5
+  slowTimeValue: 0.5
+  simplifyOrderDecreValue: 1
+  scoreMultiplierValue: 1.2
+  increaseIngredientWheelSize: 5
