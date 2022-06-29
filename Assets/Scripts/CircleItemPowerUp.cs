@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleItemPowerUp : CircleItemBase, IOnPickPowerup
+public class CircleItemPowerUp : CircleItemBase
 {
     private EPowerupType m_curPowerupType = EPowerupType.NONE;
     private static readonly float s_rateAppearMin = 0.1f;

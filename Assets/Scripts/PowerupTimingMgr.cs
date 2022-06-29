@@ -8,11 +8,16 @@ public class PowerupTiming
     private EPowerupType m_powerupType;
     private PowerupTimingMgr m_mgr;
     public EPowerupType PowerupType { get { return m_powerupType; } }
+    private ArrowFillProgress m_arrowFillProgress;
     public PowerupTiming(float duration, EPowerupType powerupType, PowerupTimingMgr mgr)
     {
         m_mgr = mgr;
         m_tinming = duration;
         m_powerupType = powerupType;
+        var newProgressObject = GameObject.Instantiate(GamePrefabMgr.inst.arrowFillProgress, Game.inst.localCharacter.powerupStatusTrans);
+        m_arrowFillProgress = newProgressObject.GetComponent<ArrowFillProgress>();
+        m_arrowFillProgress.setTime(duration);
+
         GameEvent.Powerup_ActiveChanged.Invoke(m_powerupType, true);
     }
     public void Update()
@@ -32,10 +37,11 @@ public class PowerupTiming
     public void refreshTiming(float duration)
     {
         m_tinming = duration;
+        m_arrowFillProgress.setTime(duration);
     }
 }
 
-public class PowerupTimingMgr : IOnPickPowerup
+public class PowerupTimingMgr
 {
     private static readonly float s_extraPatienceDuration = 10.0f;
     private static readonly float s_slowTimeDuration = 10.0f;

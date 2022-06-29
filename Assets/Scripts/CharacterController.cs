@@ -22,7 +22,7 @@ public enum EOctopusType
     FortunateOcto,
 }
 
-public class CharacterController : MonoBehaviour, IOnPickPowerup
+public class CharacterController : MonoBehaviour
 {
     //#region LOCAL PROPERTY
     public Transform itemGotLayout;
@@ -85,6 +85,7 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
     private CharacterStateMachine m_stateMachine;
     public Animator octopusEmoteAnimator;
     private Coroutine m_routine = null;
+    public Transform powerupStatusTrans;
     //#endregion LOCAL PROPERTY
 
     void Awake()
@@ -279,5 +280,9 @@ public class CharacterController : MonoBehaviour, IOnPickPowerup
     private void OnGameOver()
     {
         ChangeState(ECharacterState.NORMAL);
+        foreach (Transform child in powerupStatusTrans)
+        {
+            GameObject.Destroy(child);
+        }
     }
 }
