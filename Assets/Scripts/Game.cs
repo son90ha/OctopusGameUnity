@@ -113,10 +113,7 @@ public class Game : MonoBehaviour
             listStatus.Add(status);
             if (status == ECustomerStatus.FINISH)
             {
-                GameEvent.Game_OrderFinish.Invoke(c);
-
-                c.OnOrderFinish();
-                RemoveCustomer(c);
+                CustomerOrderFinished(c);
                 return;
             }
         }
@@ -402,5 +399,13 @@ public class Game : MonoBehaviour
             resetListItem(m_curIngredientAmout);
             circleItemMgr.createItem();
         }
+    }
+
+    private void CustomerOrderFinished(CustomerController cus)
+    {
+        GameEvent.Game_OrderFinish.Invoke(cus);
+        cus.OnOrderFinish();
+        RemoveCustomer(cus);
+        m_listCustomer.ForEach(e => e.unmarkAllItem());
     }
 }

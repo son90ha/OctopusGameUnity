@@ -11,13 +11,23 @@ public enum ECustomerStatus
 }
 
 public class CustomerController : MonoBehaviour
-{   
+{
+    struct OrderItem
+    {
+        public OrderItem(EItemType t, GameObject g)
+        {
+            itemType = t;
+            gameObj = g;
+        }
+        public EItemType itemType;
+        public GameObject gameObj;
+    }
     public Transform orderLayout;
     public CustomerProgressBar progressBar;
     
     private float m_curTime = 1;
     private float m_totalTime = 1;
-    private List<EItemType> m_listOrderItem = new List<EItemType>();
+    private List<OrderItem> m_listOrderItem = new List<OrderItem>();
     private float m_patientPercent;
     private bool m_slowTimeActive = false;
     public int PatientPercent
@@ -61,12 +71,13 @@ public class CustomerController : MonoBehaviour
 
     void CreateOrderItem(int count) 
     {
-        m_listOrderItem = Utils.Shuffle<EItemType>(Game.inst.GetListItemWithoutPowerUp()).GetRange(0, count);
-        foreach (var item in m_listOrderItem)
+        var listItemType = Utils.Shuffle<EItemType>(Game.inst.GetListItemWithoutPowerUp()).GetRange(0, count);
+        foreach (var item in listItemType)
         {
             var newItem = Instantiate(GamePrefabMgr.inst.itemPrefab, orderLayout);
-            newItem.gameObject.AddComponent<UnityEngine.UI.LayoutElement>();
+            newItem.AddComponent<UnityEngine.UI.LayoutElement>();
             newItem.GetComponent<SpriteRenderer>().color = Game.inst.GetColorByItemType(item);
+            m_listOrderItem.Add(new OrderItem(item, newItem));
         }
     }
 
@@ -78,21 +89,23 @@ public class CustomerController : MonoBehaviour
 
     public ECustomerStatus CheckItem(List<EItemType> listItemGot)
     {
-        var tempListOrderItem = new List<EItemType>(m_listOrderItem);
+        int correctCount = 0;
         foreach (var item in listItemGot)
         {
-            var index = tempListOrderItem.IndexOf(item);
+            int index = m_listOrderItem.FindIndex(e => item == e.itemType);
             if (index < 0)
             {
+                unmarkAllItem();
                 return ECustomerStatus.REJECT;
             }
             else
             {
-                tempListOrderItem.RemoveAt(index);
+                markItem(m_listOrderItem[index]);
+                correctCount++;
             }
         }
 
-        if (tempListOrderItem.Count == 0)
+        if (correctCount == m_listOrderItem.Count)
         {
             return ECustomerStatus.FINISH;
         }
@@ -120,5 +133,27 @@ public class CustomerController : MonoBehaviour
                 // Apply slow Powerup
             }
         }
+    }
+
+    private void markItem(OrderItem item)
+    {
+        var sr = item.gameObj.GetComponent<SpriteRenderer>();
+        var newColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.1f);
+        sr.color = newColor;
+    }
+
+    private void unmarkItem(OrderItem item)
+    {
+        var sr = item.gameObj.GetComponent<SpriteRenderer>();
+        var newColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+        sr.color = newColor;
+    }
+
+    public void unmarkAllItem()
+    {
+        m_listOrderItem.ForEach(e =>
+        {
+            unmarkItem(e);
+        });
     }
 }
