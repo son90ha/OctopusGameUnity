@@ -6,34 +6,13 @@ using UnityEngine;
 public class CircleItemPowerUp : CircleItemBase
 {
     private EPowerupType m_curPowerupType = EPowerupType.NONE;
-    private static readonly float s_rateAppearMin = 0.1f;
-    private static readonly float s_rateAppearMax = 1.0f;
-    private static readonly float s_rateIncrease = 0.1f;
-    private float m_curAppearRate = CircleItemPowerUp.s_rateAppearMin;
-    // private List<EPowerupType> m_listPowerupType;
+    private float m_curAppearRate = 0.0f;
     private TextMesh m_textMesh;
     public CircleItemPowerUp(Transform parent, Vector3 pos, float from, float to, EItemType type) : base(parent, pos, from, to, type)
     {
-        GameEvent.CircleRotate_ThroughPowerup.AddListener(OnCircleRotateThrough);
-        GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
+        m_curAppearRate = Game.inst.powerupData.powerupSpawnRate.rateAppearMin;
 
         m_spriteRenderer.gameObject.SetActive(false);
-        // m_listPowerupType = Utils.GetListFromEnum<EPowerupType>();
-
-        // // Remove NONE type
-        // int indexOfNone = m_listPowerupType.IndexOf(EPowerupType.NONE);
-        // if (indexOfNone >= 0)
-        // {
-        //     m_listPowerupType.RemoveAt(m_listPowerupType.IndexOf(EPowerupType.NONE));
-        // }
-
-        // // Remove ExtraLives type to make a condition after.
-        // int indexOfExtraHp = m_listPowerupType.IndexOf(EPowerupType.EXTRA_HP);
-        // if (indexOfExtraHp >= 0)
-        // {
-        //     m_listPowerupType.RemoveAt(indexOfExtraHp);
-        // }
-
         var newGameObject = new GameObject("PowerupText");
         newGameObject.transform.SetParent(parent);
         m_textMesh = newGameObject.AddComponent<TextMesh>();
@@ -45,6 +24,9 @@ public class CircleItemPowerUp : CircleItemBase
         m_textMesh.fontSize = 12;
         newGameObject.transform.localPosition = pos;
         newGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        GameEvent.CircleRotate_ThroughPowerup.AddListener(OnCircleRotateThrough);
+        GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
     }
 
     public override EPowerupType GetPowerupInfo()
@@ -72,11 +54,11 @@ public class CircleItemPowerUp : CircleItemBase
         bool result = randNum <= m_curAppearRate;
         if (result)
         {
-            m_curAppearRate = s_rateAppearMin;
+            m_curAppearRate = Game.inst.powerupData.powerupSpawnRate.rateAppearMin;
         }
         else
         {
-            m_curAppearRate = Mathf.Min(m_curAppearRate + s_rateIncrease, s_rateAppearMax);
+            m_curAppearRate = Mathf.Min(m_curAppearRate + Game.inst.powerupData.powerupSpawnRate.rateIncrease, Game.inst.powerupData.powerupSpawnRate.rateAppearMax);
         }
 
         // return true;

@@ -18,4 +18,12 @@ public class PowerupDataScriptTable : ScriptableObject
     public float scoreMultiplierValue;
     public float increaseIngredientWheelSize;
     public PowerupWeightData[] powerupWeightData;
+    [System.Serializable]
+    public class PowerupSpawnRate
+    {
+        public float rateAppearMax = 1.0f;
+        public float rateAppearMin = 0.1f;
+        public float rateIncrease = 0.1f;
+    }
+    public PowerupSpawnRate powerupSpawnRate;
 }
