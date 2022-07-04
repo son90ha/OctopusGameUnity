@@ -139,7 +139,7 @@ public class CharacterController : MonoBehaviour
         float bonusIncrease = m_octopusData.octopusBonusPerCustomer;
         if (Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SCORE_MULTIPLIER))
         {
-            bonusIncrease *= Game.inst.powerupAffectData.scoreMultiplierValue;
+            bonusIncrease *= Game.inst.powerupData.scoreMultiplierValue;
         }
         Score += Mathf.RoundToInt(baseScore * bonusIncrease);
         ChangeState(ECharacterState.CUS_SERVED);

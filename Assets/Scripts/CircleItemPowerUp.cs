@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CircleItemPowerUp : CircleItemBase
@@ -9,7 +10,7 @@ public class CircleItemPowerUp : CircleItemBase
     private static readonly float s_rateAppearMax = 1.0f;
     private static readonly float s_rateIncrease = 0.1f;
     private float m_curAppearRate = CircleItemPowerUp.s_rateAppearMin;
-    private List<EPowerupType> m_listPowerupType;
+    // private List<EPowerupType> m_listPowerupType;
     private TextMesh m_textMesh;
     public CircleItemPowerUp(Transform parent, Vector3 pos, float from, float to, EItemType type) : base(parent, pos, from, to, type)
     {
@@ -17,21 +18,21 @@ public class CircleItemPowerUp : CircleItemBase
         GameEvent.Game_PickPowerup.AddListener(OnPickPowerUp);
 
         m_spriteRenderer.gameObject.SetActive(false);
-        m_listPowerupType = Utils.GetListFromEnum<EPowerupType>();
+        // m_listPowerupType = Utils.GetListFromEnum<EPowerupType>();
 
-        // Remove NONE type
-        int indexOfNone = m_listPowerupType.IndexOf(EPowerupType.NONE);
-        if (indexOfNone >= 0)
-        {
-            m_listPowerupType.RemoveAt(m_listPowerupType.IndexOf(EPowerupType.NONE));
-        }
+        // // Remove NONE type
+        // int indexOfNone = m_listPowerupType.IndexOf(EPowerupType.NONE);
+        // if (indexOfNone >= 0)
+        // {
+        //     m_listPowerupType.RemoveAt(m_listPowerupType.IndexOf(EPowerupType.NONE));
+        // }
 
-        // Remove ExtraLives type to make a condition after.
-        int indexOfExtraHp = m_listPowerupType.IndexOf(EPowerupType.EXTRA_HP);
-        if (indexOfExtraHp >= 0)
-        {
-            m_listPowerupType.RemoveAt(indexOfExtraHp);
-        }
+        // // Remove ExtraLives type to make a condition after.
+        // int indexOfExtraHp = m_listPowerupType.IndexOf(EPowerupType.EXTRA_HP);
+        // if (indexOfExtraHp >= 0)
+        // {
+        //     m_listPowerupType.RemoveAt(indexOfExtraHp);
+        // }
 
         var newGameObject = new GameObject("PowerupText");
         newGameObject.transform.SetParent(parent);
@@ -59,13 +60,8 @@ public class CircleItemPowerUp : CircleItemBase
         {
             var local = Game.inst.localCharacter;
             bool hasExtraLives = local.Lives < local.octopusData.octopusLives;
-            List<EPowerupType> newList = new List<EPowerupType>(m_listPowerupType);
-            if (hasExtraLives)
-            {
-                newList.Add(EPowerupType.EXTRA_HP);
-            }
-            m_curPowerupType = Utils.GetRandomElementFromList(newList);
-            // m_curPowerupType = EPowerupType.INCREASE_INGREDIENT_WHEEL_SIZE;
+            var newList = Game.inst.powerupData.powerupWeightData.Where(e => e.pType != EPowerupType.EXTRA_HP || hasExtraLives).ToArray();
+            m_curPowerupType = newList[Utils.PickRandIndexInWeight(newList)].pType;
             m_textMesh.text = m_curPowerupType.ToString();
         }
     }

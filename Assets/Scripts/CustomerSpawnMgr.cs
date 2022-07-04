@@ -50,7 +50,7 @@ public class CustomerSpawnMgr : MonoBehaviour
         var newCustom = Instantiate(GamePrefabMgr.inst.customerPrefab, customerLayout);
         var customerController = newCustom.GetComponent<CustomerController>();
         int easyOrderDecrease = (Random.Range(0, 100) > Game.inst.localCharacter.EasyOrderPercent) ? 0 : 1;
-        int simplifyOrderDecrease = Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SIMPLIFY_ORDER) ? Game.inst.powerupAffectData.simplifyOrderDecreValue : 0;
+        int simplifyOrderDecrease = Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SIMPLIFY_ORDER) ? Game.inst.powerupData.simplifyOrderDecreValue : 0;
         int ingredientAmountMax = Mathf.Min(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease - simplifyOrderDecrease);
 
         //  Apply easy order ability
@@ -85,7 +85,7 @@ public class CustomerSpawnMgr : MonoBehaviour
         float bonusTime = Game.inst.localCharacter.PatienceBonus;
         if (Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.EXTRA_PATIENCE))
         {
-            bonusTime = Game.inst.powerupAffectData.extraPatienceTime;
+            bonusTime = Game.inst.powerupData.extraPatienceTime;
         }
         return patienceBase + bonusTime;
     }

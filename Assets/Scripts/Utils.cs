@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 using UnityEngine;
 
 public static class Utils
@@ -23,6 +24,7 @@ public static class Utils
     }
 
     private static System.Random rng = new System.Random();
+
     public static List<T> Shuffle<T>(List<T> list)  
     {  
         int n = list.Count;  
@@ -68,6 +70,43 @@ public static class Utils
     public static List<ENUM> GetListFromEnum<ENUM>() where ENUM : struct, IConvertible
     {
         return new List<ENUM>((ENUM[])Enum.GetValues(typeof(ENUM)));
+    }
+
+    public static int PickRandIndexInWeight(EWeight[] weight)
+    {
+        int total = 0;
+        foreach (var item in weight)
+        {
+            total += item.Weight;
+        }
+        int randNum = UnityEngine.Random.Range(0, total);
+        int upBound = 0;
+        int result = -1;
+        for (int i = 0; i < weight.Length; i++)
+        {
+            upBound += weight[i].Weight;
+            if (randNum < upBound)
+            {
+                result = i;
+                break;
+            }
+        }
+
+        if (result == -1)
+        {
+            Debug.LogError($"[Utils] PickRandIndexInWeightArr - CANNOT find weight: {JsonUtility.ToJson(weight, true)}");
+        }
+
+        return result;
+    }
+    public static int PickRandIndexInWeight(List<EWeight> weight)
+    {
+        return Utils.PickRandIndexInWeight(weight.ToArray());
+    }
+
+    public static int PickRandIndexInWeight(IEnumerable<EWeight> weight)
+    {
+        return Utils.PickRandIndexInWeight(weight.ToArray());
     }
 
     /// <summary>

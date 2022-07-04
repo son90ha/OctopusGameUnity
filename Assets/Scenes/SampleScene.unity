@@ -1505,7 +1505,7 @@ MonoBehaviour:
   octoDataBaseText: {fileID: 4900000, guid: 06627b6d3a7c6b04abebce6a3d450d28, type: 3}
   octoCustomerGenText: {fileID: 4900000, guid: cbfe173e67805144da4fe0e8b97c4292, type: 3}
   ingredientDataText: {fileID: 4900000, guid: 84d3795a06b591247bc89e744c9846ff, type: 3}
-  powerupAffectData: {fileID: 11400000, guid: 4595062c6a1a29b4c91240db01030919, type: 2}
+  powerupData: {fileID: 11400000, guid: 4595062c6a1a29b4c91240db01030919, type: 2}
 --- !u!1 &1756350889
 GameObject:
   m_ObjectHideFlags: 0

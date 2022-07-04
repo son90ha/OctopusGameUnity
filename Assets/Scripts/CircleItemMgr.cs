@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CircleItemMgr : MonoBehaviour, LogTag
+public class CircleItemMgr : MonoBehaviour, ELogTag
 {
 
     public GameObject itemContainer;
@@ -50,7 +50,7 @@ public class CircleItemMgr : MonoBehaviour, LogTag
             {
                 if (listItemType[i] == EItemType.POWER_UP)
                 {
-                    angleTo -= (Game.inst.powerupAffectData.increaseIngredientWheelSize * (count - 1));
+                    angleTo -= (Game.inst.powerupData.increaseIngredientWheelSize * (count - 1));
                     if (angleTo < angleFrom)
                     {
                         Debug.LogWarning($"{LOG_TAB} - Increase size EXCEED 360 degree");
@@ -59,7 +59,7 @@ public class CircleItemMgr : MonoBehaviour, LogTag
                 }
                 else
                 {
-                    angleTo += Game.inst.powerupAffectData.increaseIngredientWheelSize;
+                    angleTo += Game.inst.powerupData.increaseIngredientWheelSize;
                 }
             }
             if (angleTo > 360)

@@ -10,10 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16fed25613c509a48b6546e6993e2e62, type: 3}
-  m_Name: PowerupAffect
+  m_Name: PowerupData
   m_EditorClassIdentifier: 
   extraPatienceTime: 5
   slowTimeValue: 0.5
   simplifyOrderDecreValue: 1
   scoreMultiplierValue: 1.2
   increaseIngredientWheelSize: 5
+  powerupWeightData:
+  - pType: 0
+    weight: 10
+  - pType: 1
+    weight: 10
+  - pType: 2
+    weight: 10
+  - pType: 3
+    weight: 10
+  - pType: 4
+    weight: 10
+  - pType: 5
+    weight: 10

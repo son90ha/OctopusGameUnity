@@ -35,7 +35,7 @@ public class Game : MonoBehaviour
     private int m_curIngredientAmout = 3;
     private PowerupTimingMgr m_powerupTimingMgr;
     public PowerupTimingMgr PowerupTimingMgr { get { return m_powerupTimingMgr; } }
-    public PowerupDataScriptTable powerupAffectData;
+    public PowerupDataScriptTable powerupData;
 
     void Awake() {
         m_gameState = EGameState.INITILAIZING;
