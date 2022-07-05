@@ -38,12 +38,12 @@ public class CustomerController : MonoBehaviour
     void Awake()
     {
         GameEvent.Powerup_ActiveChanged.AddListener(OnPowerupActiveChanged);
+        Game.inst.AddNewCustomer(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Game.inst.AddNewCustomer(this);
     }
 
     // Update is called once per frame
@@ -66,7 +66,10 @@ public class CustomerController : MonoBehaviour
         Game.inst.RemoveCustomer(this);
         Destroy(gameObject);
 
-        GameEvent.Customer_TimeOut.Invoke();
+        if (Game.inst.IsPlaying)
+        {
+            GameEvent.Customer_TimeOut.Invoke();
+        }
     }
 
     void CreateOrderItem(int count) 

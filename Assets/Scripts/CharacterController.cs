@@ -282,7 +282,7 @@ public class CharacterController : MonoBehaviour
         ChangeState(ECharacterState.NORMAL);
         foreach (Transform child in powerupStatusTrans)
         {
-            GameObject.Destroy(child);
+            GameObject.Destroy(child.gameObject);
         }
     }
 }

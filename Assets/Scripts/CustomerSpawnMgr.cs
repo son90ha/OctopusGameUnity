@@ -16,6 +16,7 @@ public class CustomerSpawnMgr : MonoBehaviour
     {
         GameEvent.Character_ScoreChanged.AddListener(OnCharacterScoreChanged);
         GameEvent.Game_CustomerClear.AddListener(OnCustomerClear);
+        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
@@ -73,7 +74,10 @@ public class CustomerSpawnMgr : MonoBehaviour
 
     private void OnCustomerClear()
     {
-        CreateCustomer();
+        if (Game.inst.IsPlaying)
+        {
+            CreateCustomer();
+        }
     }
 
     /// <summary>
@@ -88,5 +92,10 @@ public class CustomerSpawnMgr : MonoBehaviour
             bonusTime = Game.inst.powerupData.extraPatienceTime;
         }
         return patienceBase + bonusTime;
+    }
+
+    private void OnGameOver()
+    {
+        m_spawnInterval = 0;
     }
 }

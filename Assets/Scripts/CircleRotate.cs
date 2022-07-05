@@ -17,6 +17,7 @@ public class CircleRotate : MonoBehaviour
         GameEvent.Character_DataChanged.AddListener(OnCharacterDataChanged);
         GameEvent.Game_OrderWrong.AddListener(OnOrderWrong);
         GameEvent.Powerup_ActiveChanged.AddListener(OnPowerupActiveChanged);
+        GameEvent.Game_GameOver.AddListener(OnGameOver);
     }
 
     // Start is called before the first frame update
@@ -115,5 +116,10 @@ public class CircleRotate : MonoBehaviour
     private float GetCurSpeed()
     {
         return m_baseSpeed + m_bonusSpeed;
+    }
+
+    private void OnGameOver()
+    {
+        ResetRotateAngle();
     }
 }

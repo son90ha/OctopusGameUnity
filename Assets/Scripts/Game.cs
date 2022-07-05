@@ -330,6 +330,7 @@ public class Game : MonoBehaviour
     private void CreateCharacterData()
     {
         localCharacter.octopusData = GetOctopusDataByType(EOctopusType.BasicOctoChef);
+        localCharacter.Score = 0;
     }
 
     public void CharacterChangeToNextSkin()
