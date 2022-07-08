@@ -73,15 +73,15 @@ public class GameUI : MonoBehaviour
 
     private void ShowResultPopup()
     {
-        var resultPopup = PopupMgr.CreatePopup<ResultPopup>(ResultPopup.PATH);
-        var rectTransform = resultPopup.GetComponent<UnityEngine.RectTransform>();
-        var old_Scale = rectTransform.localScale;
-        var old_offsetMax = rectTransform.offsetMax;
-        var old_offsetMin = rectTransform.offsetMin;
-        resultPopup.transform.SetParent(transform);
-        resultPopup.transform.localScale = old_Scale;
-        rectTransform.offsetMax = old_offsetMax;
-        rectTransform.offsetMin = old_offsetMin;
+        var resultPopup = PopupMgr.CreatePopup<ResultPopup>(ResultPopup.PATH, transform);
+        // var rectTransform = resultPopup.GetComponent<UnityEngine.RectTransform>();
+        // var old_Scale = rectTransform.localScale;
+        // var old_offsetMax = rectTransform.offsetMax;
+        // var old_offsetMin = rectTransform.offsetMin;
+        // resultPopup.transform.SetParent(transform);
+        // resultPopup.transform.localScale = old_Scale;
+        // rectTransform.offsetMax = old_offsetMax;
+        // rectTransform.offsetMin = old_offsetMin;
         resultPopup.Init(Game.inst.localCharacter.Score);
     }
 }
