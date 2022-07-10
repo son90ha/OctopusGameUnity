@@ -52,7 +52,7 @@ public class CustomerSpawnMgr : MonoBehaviour
         var customerController = newCustom.GetComponent<CustomerController>();
         int easyOrderDecrease = (Random.Range(0, 100) > Game.inst.localCharacter.EasyOrderPercent) ? 0 : 1;
         int simplifyOrderDecrease = Game.inst.PowerupTimingMgr.IsPowerupActive(EPowerupType.SIMPLIFY_ORDER) ? Game.inst.powerupData.simplifyOrderDecreValue : 0;
-        int ingredientAmountMax = Mathf.Min(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease - simplifyOrderDecrease);
+        int ingredientAmountMax = Mathf.Max(1, CurCustomerGenData.IngredientAmountMax + 1 - easyOrderDecrease - simplifyOrderDecrease);
 
         //  Apply easy order ability
         if (easyOrderDecrease > 0)
